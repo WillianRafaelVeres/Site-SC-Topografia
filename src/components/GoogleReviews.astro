@@ -1,0 +1,342 @@
+---
+import { Star, CheckCircle, ExternalLink, ChevronLeft, ChevronRight, MessageSquarePlus, ThumbsUp, ShieldCheck } from 'lucide-astro';
+
+const googleReviewsUrl = 'https://www.google.com/search?q=SC+Topografia+e+Planejamento&lrd=0x94ddd1ee47ceea77:0x33ae8f550baf6d16,1,,,';
+const googleWriteReviewUrl = 'https://www.google.com/search?q=SC+Topografia+e+Planejamento&lrd=0x94ddd1ee47ceea77:0x33ae8f550baf6d16,3,,,';
+
+// Todas as 12 avaliações reais registradas na ficha oficial da SC Topografia no Google Meu Negócio
+const allReviews = [
+  {
+    name: 'Emanuella Eckstein',
+    photo: 'https://lh3.googleusercontent.com/a-/ALV-UjXJAEovIy3H0U-py1Bth4PAmH1S9ynp0L19yAgGgOiaLTMQxS8=s120-c-rp-mo-br100',
+    rating: 5,
+    hasComment: true,
+    comment: 'Ótimo atendimento, trabalho de excelência e qualidade! Recomendo com toda certeza!',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2swek9IVTVkbmxoWTE5d1ZrMHRRMjVYU1RsSWNXYxAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOk0zOHU5dnlhY19wVk0tQ25XSTlIcWc%7C%7C'
+  },
+  {
+    name: 'Rhuan Augusto Silva',
+    photo: 'https://lh3.googleusercontent.com/a-/ALV-UjUGhx1v1125WCy1TtdMggxZgYVXiFnxL9Hik4HmiSj-d0E4_4QxaA=s120-c-rp-mo-br100',
+    rating: 5,
+    hasComment: true,
+    comment: 'Referência na área, atendimento impecável. Extremamente técnicos, recomendo.',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT21JMmFsOW5hbHBXZFhoblJVSm5TSFJ4UVVkQlkwRRAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOmI2al9nalpWdXhnRUJnSHRxQUdBY0E%7C%7C'
+  },
+  {
+    name: 'Paulo Roberto Tibolla',
+    photo: 'https://lh3.googleusercontent.com/a-/ALV-UjWwQnK9EI-XKuPw8vizVDn7xZS1zI5RxsvINSKVE8zXDjFv8qT9=s120-c-rp-mo-br100',
+    rating: 5,
+    hasComment: true,
+    comment: 'Excelência no atendimento, além de um alto nível de profissionalismo.',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT25rM01HdHJPVU5yT1dkaUxVTTBjVTh0VkZkUlVWRRAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOnk3MGtrOUNrOWdiLUM0cU8tVFdRUVE%7C%7C'
+  },
+  {
+    name: 'Enzo Ritter',
+    photo: 'https://lh3.googleusercontent.com/a/ACg8ocJJF96SgZNOcmAebcCUhdmgBh9wcpf9MfOtBVE_gDxSWF7G2v4=s120-c-rp-mo-br100',
+    rating: 5,
+    hasComment: true,
+    comment: 'Excelente atendimento, e profissionalismo elevado!',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT25sbVJWVjZhVTlHVDNGVU1WbFpSMjg1Y21jM05FRRAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOnlmRVV6aU9GT3FUMVlZR285cmc3NEE%7C%7C'
+  },
+  {
+    name: 'Caio Debus',
+    photo: 'https://lh3.googleusercontent.com/a/ACg8ocLAz8nZseCbLdD150p3If8Ai-23Lv6cDMYtklv6sArjPBTMLQ=s120-c-rp-mo-br100',
+    rating: 5,
+    hasComment: true,
+    comment: 'Excelente atendimento!',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2xvM1RrNTBWbFJYUmtOYVptZFJSbFZHUjBkVVdHYxAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOlo3Tk50VlRXRkNaZmdRRlVGR0dUWGc%7C%7C'
+  },
+  {
+    name: 'Tiago .pl',
+    photo: 'https://lh3.googleusercontent.com/a/ACg8ocKZc-5QfcoWAa8U28147LNbwCc4e9Cio2Qwsl5-Is5_A14VJA=s120-c-rp-mo-br100',
+    rating: 5,
+    hasComment: true,
+    comment: 'Excelente atendimento e experiência.',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2tSM1kyMXhSbXR3TUVWNU1XRTFhekJDYTAxbU5FRRAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOkR3Y21xRmtwMEV5MWE1azBCa01mNEE%7C%7C'
+  },
+  {
+    name: 'Cristian',
+    photo: 'https://lh3.googleusercontent.com/a/ACg8ocKiIzW1Yk4nlgwAuBJx8LAmCEMWWcKIRXSiGtQlSCtzwD73piT0=s120-c-rp-mo-ba12-br100',
+    rating: 5,
+    hasComment: false,
+    comment: 'Avaliação com nota máxima 5 estrelas verificada no perfil oficial do Google Meu Negócio.',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2xCSFN6TkdOa3c0WTBsRFVuaExhbTlaTTJseVZIYxAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOlBHSzNGNkw4Y0lDUnhLam9ZM2lyVHc%7C%7C'
+  },
+  {
+    name: 'Larissa Veres',
+    photo: 'https://lh3.googleusercontent.com/a-/ALV-UjWIbVMx_0rLftSS3rA8orTtdEKorzybbP0_nOzMxdty3RgEO69r=s120-c-rp-mo-br100',
+    rating: 5,
+    hasComment: false,
+    comment: 'Avaliação com nota máxima 5 estrelas verificada no perfil oficial do Google Meu Negócio.',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT25aclNYcERhR2gwVDE4emIzaFliamQ2Um1kek1HYxAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOnZrSXpDaGh0T18zb3hYbjd6RmdzMGc%7C%7C'
+  },
+  {
+    name: 'Lucas Konescki',
+    photo: 'https://lh3.googleusercontent.com/a/ACg8ocJH1dgJf38JlyDUoregWtWAo2_cBno3xnqGRi-h7N00JCwcYQ=s120-c-rp-mo-br100',
+    rating: 5,
+    hasComment: false,
+    comment: 'Avaliação com nota máxima 5 estrelas verificada no perfil oficial do Google Meu Negócio.',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2tONFJUUkhlRkZIVmtoeVVuUkZRVWt5WlY4dFZYYxAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOkN4RTRHeFFHVkhyUnRFQUkyZV8tVXc%7C%7C'
+  },
+  {
+    name: 'Matheus K',
+    photo: 'https://lh3.googleusercontent.com/a/ACg8ocK8uVWxZOH-86wUn9EyvesQyahsbPiRuTsc5JRKHz6Mz6NBBw=s120-c-rp-mo-br100',
+    rating: 5,
+    hasComment: false,
+    comment: 'Avaliação com nota máxima 5 estrelas verificada no perfil oficial do Google Meu Negócio.',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2paS2RtOU9WRTlsYWxNNVZsVkJTbXA2UTBKU2FHYxAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOjZKdm9OVE9lalM5VlVBSmp6Q0JSaGc%7C%7C'
+  },
+  {
+    name: 'Tiago Galarça',
+    photo: 'https://lh3.googleusercontent.com/a-/ALV-UjXfCGzF1Op3DpxxoG1zbIMsI_QArNTOqDJC9-9thKRT7y6Uj9cb=s120-c-rp-mo-br100',
+    rating: 5,
+    hasComment: false,
+    comment: 'Avaliação com nota máxima 5 estrelas verificada no perfil oficial do Google Meu Negócio.',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2tkc1NXeHNia010U0ZKeU9UQnRhRkZaWW1aa2FYYxAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOkdsSWxsbkMtSFJyOTBtaFFZYmZkaXc%7C%7C'
+  },
+  {
+    name: 'HiagozinN',
+    photo: 'https://lh3.googleusercontent.com/a/ACg8ocJ_tzGqoWkgmGab9oN6uOXlW94PMtGLyrWy22Rs_6O-ML_DUR4=s120-c-rp-mo-br100',
+    rating: 5,
+    hasComment: false,
+    comment: 'Avaliação com nota máxima 5 estrelas verificada no perfil oficial do Google Meu Negócio.',
+    url: 'https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT201c05rSnRaREIxUW1rMlpEWkVTRUV5WlZoMmRHYxAB!2m1!1s0x0:0x33ae8f550baf6d16!3m1!1s2@1:CAIQACodChtycF9oOm5sNkJtZDB1Qmk2ZDZESEEyZVh2dGc%7C%7C'
+  }
+];
+---
+
+<section class="py-20 bg-white border-t border-gray-100 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Cabeçalho com Nota Geral do Google e Link Oficial -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-bold uppercase tracking-wider mb-3">
+          <Star class="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+          <span>Avaliações Reais no Google Meu Negócio</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-heading tracking-tight">
+          O que nossos clientes dizem
+        </h2>
+        <p class="text-base text-slate-body mt-2 font-medium">
+          Transparência, agilidade e seriedade comprovadas por quem já contratou a SC Topografia.
+        </p>
+      </div>
+
+      <!-- Resumo Google Meu Negócio Clicável com Ações Diretas -->
+      <div class="flex flex-wrap items-center gap-4 bg-brand-lightBg p-4 sm:p-5 rounded-3xl border border-gray-200/80 shadow-xs">
+        <div class="flex items-center gap-3 pr-4 border-r border-gray-200">
+          <div class="flex flex-col items-center justify-center">
+            <span class="text-3xl font-black text-slate-heading leading-none">5.0</span>
+            <div class="flex text-amber-400 mt-1">
+              {[...Array(5)].map(() => (
+                <Star class="w-3.5 h-3.5 fill-amber-400" />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-1.5 text-xs font-bold text-slate-heading">
+            <svg class="w-4 h-4" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3h3.88c2.27-2.09 3.665-5.17 3.665-9.09z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.1C3.28 21.43 7.37 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.28 14.32c-.25-.72-.38-1.49-.38-2.32s.13-1.6.38-2.32V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.1z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.37 0 3.28 2.57 1.25 6.58l4.03 3.1c.95-2.83 3.6-4.93 6.72-4.93z"/>
+            </svg>
+            <span>Google Avaliações • 12 avaliações (5.0 ★)</span>
+          </div>
+          <div class="flex items-center gap-3 mt-1.5">
+            <a
+              href={googleReviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-bold text-brand-primary hover:underline flex items-center gap-1"
+            >
+              <span>Ver todas no Google</span>
+              <ExternalLink class="w-3 h-3" />
+            </a>
+            <span class="text-gray-300">•</span>
+            <a
+              href={googleWriteReviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-semibold text-slate-body hover:text-brand-primary flex items-center gap-1"
+            >
+              <MessageSquarePlus class="w-3 h-3 text-brand-primary" />
+              <span>Deixar avaliação</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carrossel Nativo com Todas as 12 Avaliações Reais -->
+    <div class="relative group">
+      <div 
+        id="reviews-carousel"
+        class="flex gap-6 overflow-x-auto scrollbar-none scroll-smooth pb-6 pt-2 px-1 snap-x snap-mandatory"
+        style="scrollbar-width: none; -ms-overflow-style: none;"
+      >
+        {allReviews.map((r) => (
+          <div class="min-w-[290px] sm:min-w-[340px] lg:min-w-[370px] max-w-[370px] bg-brand-lightBg rounded-3xl p-7 border border-gray-200/90 shadow-xs hover:shadow-xl hover:border-emerald-300/80 transition-all duration-300 flex flex-col justify-between snap-start flex-shrink-0">
+            <div>
+              <!-- Estrelas e Tag de Verificação Oficial -->
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex text-amber-400 gap-0.5">
+                  {[...Array(r.rating)].map(() => (
+                    <Star class="w-4 h-4 fill-amber-400" />
+                  ))}
+                </div>
+                <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                  <CheckCircle class="w-3 h-3 text-emerald-600" />
+                  <span>Google Verificado</span>
+                </span>
+              </div>
+
+              <!-- Comentário / Avaliação Real -->
+              <p class={`text-sm leading-relaxed mb-6 font-medium ${
+                r.hasComment ? 'text-slate-heading italic' : 'text-slate-muted text-xs'
+              }`}>
+                {r.hasComment ? `"${r.comment}"` : r.comment}
+              </p>
+            </div>
+
+            <!-- Dados do Autor com Foto Real do Google e Link Direto -->
+            <div class="pt-4 border-t border-gray-200/70 flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3 overflow-hidden">
+                <img 
+                  src={r.photo} 
+                  alt={r.name}
+                  class="w-10 h-10 rounded-full object-cover border border-gray-200 shadow-2xs flex-shrink-0"
+                  loading="lazy"
+                  onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="w-10 h-10 rounded-full bg-brand-primary text-white items-center justify-center font-black text-sm shadow-xs flex-shrink-0 hidden">
+                  {r.name.charAt(0)}
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1">
+                    <span class="text-sm font-bold text-slate-heading truncate">{r.name}</span>
+                    <CheckCircle class="w-3.5 h-3.5 text-blue-500 flex-shrink-0" />
+                  </div>
+                  <span class="text-[11px] text-slate-muted block">Avaliação no Google</span>
+                </div>
+              </div>
+
+              <!-- Link direto para a avaliação no Google Maps -->
+              <a
+                href={r.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-2 rounded-xl text-brand-primary hover:bg-emerald-50 transition-colors flex-shrink-0"
+                title="Ver esta avaliação no Google"
+              >
+                <span class="sr-only">Ver no Google</span>
+                <ExternalLink class="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        ))}
+
+        <!-- Card Final de Chamada: Deixe Sua Avaliação -->
+        <div class="min-w-[290px] sm:min-w-[340px] lg:min-w-[370px] max-w-[370px] bg-gradient-to-br from-emerald-900 to-brand-dark rounded-3xl p-7 text-white border border-emerald-800 shadow-md flex flex-col justify-between snap-start flex-shrink-0">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-amber-400 gap-0.5">
+                {[...Array(5)].map(() => (
+                  <Star class="w-4 h-4 fill-amber-400" />
+                ))}
+              </div>
+              <span class="text-[11px] font-bold text-emerald-300 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10">
+                12 Avaliações 5.0 ★
+              </span>
+            </div>
+            <h3 class="text-lg font-black mb-2 text-white">
+              Já realizou um serviço conosco?
+            </h3>
+            <p class="text-sm text-gray-200 leading-relaxed font-medium">
+              Sua opinião é fundamental para mantermos nossa excelência técnica no campo e no cartório.
+            </p>
+          </div>
+
+          <div class="pt-6 border-t border-white/10">
+            <a
+              href={googleWriteReviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white hover:bg-emerald-50 text-emerald-950 font-bold text-xs shadow-md transition-all"
+            >
+              <ThumbsUp class="w-4 h-4 text-brand-primary" />
+              <span>Deixar Minha Avaliação no Google</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controles de Navegação do Carrossel e Link Oficial -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-6">
+        <a
+          href={googleReviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-xs font-bold text-brand-primary hover:text-brand-primaryHover transition-colors"
+        >
+          <ShieldCheck class="w-4 h-4 text-emerald-600" />
+          <span>Conectar e ver todas as avaliações no Google Meu Negócio</span>
+          <ExternalLink class="w-3.5 h-3.5" />
+        </a>
+
+        <!-- Botões de Navegação -->
+        <div class="flex items-center gap-2 self-end sm:self-auto">
+          <button
+            id="prev-review-btn"
+            aria-label="Avaliação anterior"
+            class="p-3 rounded-full bg-brand-lightBg hover:bg-emerald-100 text-slate-heading hover:text-brand-primary border border-gray-200 transition-colors shadow-xs cursor-pointer"
+          >
+            <ChevronLeft class="w-5 h-5" />
+          </button>
+          <button
+            id="next-review-btn"
+            aria-label="Próxima avaliação"
+            class="p-3 rounded-full bg-brand-lightBg hover:bg-emerald-100 text-slate-heading hover:text-brand-primary border border-gray-200 transition-colors shadow-xs cursor-pointer"
+          >
+            <ChevronRight class="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const carousel = document.getElementById('reviews-carousel');
+  const prevBtn = document.getElementById('prev-review-btn');
+  const nextBtn = document.getElementById('next-review-btn');
+
+  if (carousel && prevBtn && nextBtn) {
+    const scrollAmount = 370;
+
+    prevBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    // Auto-scroll a cada 5 segundos com pausa ao passar o mouse ou tocar
+    let autoScrollInterval = setInterval(() => {
+      if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 20) {
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }, 5000);
+
+    carousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+    carousel.addEventListener('touchstart', () => clearInterval(autoScrollInterval));
+  }
+</script>
+

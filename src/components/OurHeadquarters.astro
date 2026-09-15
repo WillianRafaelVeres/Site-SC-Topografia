@@ -1,0 +1,87 @@
+---
+import { MapPin, Clock, Phone, ExternalLink } from 'lucide-astro';
+---
+
+<section id="sede" class="py-16 lg:py-20 bg-brand-lightBg border-t border-gray-200/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Informações da Sede -->
+      <div class="lg:col-span-5 space-y-5">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-brand-primary text-xs font-bold uppercase tracking-wider">
+          <MapPin class="w-3.5 h-3.5" />
+          <span>Localização Estratégica</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-heading tracking-tight">
+          Nossa Sede em Rio Negrinho
+        </h2>
+
+        <p class="text-slate-body text-sm sm:text-base leading-relaxed font-medium">
+          Venha tomar um café conosco e tirar suas dúvidas técnicas. Estamos situados diretamente na Rodovia BR-280, com acesso facilitado e estacionamento próprio.
+        </p>
+
+        <div class="space-y-3 pt-2">
+          <div class="p-4 rounded-2xl bg-white border border-gray-200/90 shadow-xs">
+            <span class="text-xs font-bold text-slate-muted uppercase tracking-wider block mb-1">Endereço Oficial:</span>
+            <p class="text-sm font-bold text-slate-heading">
+              Rodovia BR-280, nº 586, Sala 05<br/>
+              Bairro Bela Vista — Rio Negrinho – SC<br/>
+              <span class="text-xs font-normal text-slate-muted">CEP: 89297-578</span>
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white border border-gray-200/90 shadow-xs flex items-center gap-3">
+            <Clock class="w-5 h-5 text-brand-primary flex-shrink-0" />
+            <div>
+              <span class="text-xs font-bold text-slate-muted uppercase tracking-wider block">Expediente:</span>
+              <span class="text-sm font-bold text-slate-heading">Segunda a Sexta: 08:00 às 18:00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botões de Rota Direta -->
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a
+            href="https://maps.google.com/?cid=3724089901413813526"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-primary hover:bg-brand-primaryHover text-white text-xs font-bold shadow-md hover:shadow-lg transition-all"
+          >
+            <MapPin class="w-4 h-4" />
+            <span>Abrir no Google Maps</span>
+          </a>
+
+          <a
+            href="https://waze.com/ul?ll=-26.257324,-49.52358&navigate=yes"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-gray-100 text-slate-heading border border-gray-200 text-xs font-bold shadow-xs transition-colors"
+          >
+            <ExternalLink class="w-4 h-4" />
+            <span>Traçar Rota no Waze</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mapa Interativo Embutido -->
+      <div class="lg:col-span-7">
+        <div class="w-full h-80 sm:h-96 rounded-3xl overflow-hidden border border-gray-200/90 shadow-lg relative">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3575.253628312061!2d-49.5257687!3d-26.257324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ddd1ee47ceea77%3A0x33ae8f550baf6d16!2sSC%20Topografia%20e%20Planejamento!5e0!3m2!1spt-BR!2sbr!4v1710420000000!5m2!1spt-BR!2sbr"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização da Sede SC Topografia na BR-280"
+          ></iframe>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

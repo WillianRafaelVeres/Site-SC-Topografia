@@ -1,0 +1,32 @@
+---
+import { MessageCircle } from 'lucide-astro';
+---
+
+<div class="fixed bottom-6 right-6 z-50 flex items-center group">
+  <!-- Tooltip flutuante suave -->
+  <div class="hidden sm:flex items-center mr-3 px-3.5 py-1.5 rounded-full bg-white text-slate-heading text-xs font-semibold shadow-lg border border-gray-100 opacity-95 group-hover:opacity-100 transition-opacity">
+    <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
+    <span>Tire suas dúvidas agora</span>
+  </div>
+
+  <!-- Botão circular com efeito pulsar -->
+  <a
+    href="https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20meu%20im%C3%B3vel."
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Falar pelo WhatsApp com a SC Topografia"
+    class="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-xl hover:scale-110 hover:shadow-2xl transition-all duration-300"
+  >
+    <!-- Anel de pulso externo -->
+    <span class="absolute inset-0 rounded-full bg-[#25D366] opacity-40 animate-ping -z-10"></span>
+    
+    <!-- Ícone SVG Oficial do WhatsApp -->
+    <svg 
+      class="w-8 h-8 fill-current" 
+      viewBox="0 0 24 24" 
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.477-.15-.678.15-.2.3-.777.978-.953 1.179-.176.2-.351.226-.652.075-.301-.15-1.272-.469-2.423-1.496-.896-.799-1.5-1.787-1.676-2.088-.176-.3-.019-.463.132-.613.136-.135.301-.35.451-.526.15-.175.2-.3.301-.501.1-.2.05-.375-.025-.526-.075-.15-.677-1.631-.928-2.234-.244-.588-.493-.509-.678-.518-.176-.009-.376-.01-.577-.01-.2 0-.526.075-.802.376-.276.3-1.053 1.028-1.053 2.507 0 1.479 1.078 2.908 1.228 3.109.15.2 2.122 3.24 5.141 4.544.718.31 1.279.495 1.716.634.721.23 1.378.198 1.897.12.578-.088 1.78-.727 2.031-1.43.25-.702.25-1.304.175-1.43-.075-.125-.276-.201-.577-.351zM12.04 21.75c-1.748 0-3.414-.458-4.88-1.259l-.35-.19-3.633.953.97-3.541-.226-.361a9.696 9.696 0 0 1-1.488-5.187C2.433 6.81 7.237 2.006 13.093 2.006c2.838 0 5.506 1.106 7.513 3.112a10.56 10.56 0 0 1 3.106 7.516c-.001 5.856-4.805 10.616-11.672 10.616z"/>
+    </svg>
+  </a>
+</div>

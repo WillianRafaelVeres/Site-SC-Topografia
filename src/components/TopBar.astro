@@ -1,0 +1,59 @@
+---
+import { Phone, Mail, MapPin, Clock, ExternalLink } from 'lucide-astro';
+---
+
+<div class="bg-brand-dark text-white text-xs font-medium py-2 px-4 hidden md:block border-b border-brand-dark/40 relative z-30">
+  <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+    <!-- Informações de Contato -->
+    <div class="flex items-center gap-6">
+      <a 
+        href="tel:4736444235" 
+        class="flex items-center gap-1.5 text-gray-200 hover:text-white transition-colors"
+        title="Ligue para nosso escritório"
+      >
+        <Phone class="w-3.5 h-3.5 text-brand-accent" />
+        <span>(47) 3644-4235</span>
+      </a>
+
+      <a 
+        href="https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20um%20or%C3%A7amento%20para%20meu%20im%C3%B3vel." 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="flex items-center gap-1.5 text-gray-200 hover:text-white transition-colors"
+        title="Fale conosco no WhatsApp"
+      >
+        <span class="inline-block w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
+        <span class="font-semibold text-emerald-300">WhatsApp:</span>
+        <span>(47) 98438-8016</span>
+      </a>
+
+      <a 
+        href="mailto:sctopoplanejamento@yahoo.com" 
+        class="flex items-center gap-1.5 text-gray-200 hover:text-white transition-colors"
+        title="Enviar e-mail para SC Topografia"
+      >
+        <Mail class="w-3.5 h-3.5 text-brand-accent" />
+        <span>sctopoplanejamento@yahoo.com</span>
+      </a>
+    </div>
+
+    <!-- Localização Clicável e Expediente -->
+    <div class="flex items-center gap-6 text-gray-300">
+      <a 
+        href="https://maps.google.com/?cid=3724089901413813526" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="flex items-center gap-1.5 text-gray-200 hover:text-emerald-300 transition-colors group"
+        title="Abrir localização da SC Topografia no Google Maps"
+      >
+        <MapPin class="w-3.5 h-3.5 text-brand-accent group-hover:scale-110 transition-transform" />
+        <span>BR-280, 586 - Bela Vista, Rio Negrinho - SC</span>
+        <ExternalLink class="w-3 h-3 opacity-60 group-hover:opacity-100" />
+      </a>
+      <div class="flex items-center gap-1.5 text-gray-400">
+        <Clock class="w-3.5 h-3.5" />
+        <span>Seg a Sex: 08h - 18h</span>
+      </div>
+    </div>
+  </div>
+</div>

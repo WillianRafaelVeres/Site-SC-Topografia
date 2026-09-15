@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import PartnersCarousel from '../components/PartnersCarousel.astro';
+import Pillars from '../components/Pillars.astro';
+import Differential from '../components/Differential.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
+import OurHeadquarters from '../components/OurHeadquarters.astro';
+---
+
+<Layout 
+  title="SC Topografia e Operações Florestais | Rio Negrinho - SC"
+  description="Precisão no campo, tranquilidade no cartório. Soluções completas em topografia, agrimensura, regularização fundiária e venda de madeira em tora no Planalto Norte de Santa Catarina."
+>
+  <!-- Hero Section com Imagem de Alta Resolução, Headline e CTA -->
+  <Hero />
+
+  <!-- Carrossel de Empresas e Produtores Parceiros (Mais fluido e orgânico) -->
+  <PartnersCarousel />
+
+  <!-- Destaque dos Dois Pilares Centrais -->
+  <Pillars />
+
+  <!-- Método Exclusivo: Do Campo ao Cartório (Nosso Diferencial) -->
+  <Differential />
+
+  <!-- Cards Didáticos de Serviços (O que é e Para quem é) -->
+  <ServicesGrid />
+
+  <!-- Depoimentos e Avaliações do Google (Carrossel Interativo) -->
+  <GoogleReviews />
+
+  <!-- Nossa Sede em Rio Negrinho com Mapa Interativo -->
+  <OurHeadquarters />
+</Layout>

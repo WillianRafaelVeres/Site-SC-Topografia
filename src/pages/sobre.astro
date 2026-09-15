@@ -1,0 +1,239 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { 
+  Award, ShieldCheck, CheckCircle2, Users, MapPin, 
+  Calendar, Briefcase, FileCheck, ArrowRight, Phone, MessageSquare, Trees, Compass
+} from 'lucide-astro';
+
+const stats = [
+  { value: '+20', label: 'Anos de Tradição', desc: 'Duas décadas dedicadas à agrimensura e ao homem do campo' },
+  { value: '+250 mil', label: 'Alqueires Mapeados', desc: 'Vasta extensão de terras medidas com exatidão no Norte de SC e Sul do PR' },
+  { value: '+18', label: 'Municípios Atendidos', desc: 'Presença e atendimento constante em propriedades de toda a região' },
+  { value: '100%', label: 'Com ART no CREA', desc: 'Anotação de Responsabilidade Técnica em cada projeto' }
+];
+
+const partners = [
+  {
+    name: 'Solanjo Antonio Gertler',
+    role: 'Sócio & Responsável Técnico',
+    emphasis: 'Gestão Técnica, Operações Florestais & Projetos',
+    bio: 'Responsável Técnico que assina os laudos e projetos perante o CREA e órgãos reguladores. Atua diretamente na gestão e direcionamento das operações florestais, comercialização de madeira em tora de Pinus e cumprimento rigoroso das normas técnicas.',
+    specialties: ['Responsabilidade Técnica (CREA)', 'Operações Florestais & Madeira', 'Planejamento de Projetos', 'Conformidade Legal Fundiária']
+  },
+  {
+    name: 'Clodoaldo Veres',
+    role: 'Sócio & Agrimensura Operacional',
+    emphasis: 'Gestão do Escritório, Campo & Relacionamento Rural',
+    bio: 'Mais de duas décadas de vivência diária no campo e liderança na gestão do escritório. Especialista no relacionamento direto com o produtor rural, demarcação física de divisas na propriedade e mediação e coleta de assinaturas com vizinhos confrontantes.',
+    specialties: ['Gestão do Escritório', 'Relacionamento com o Produtor Rural', 'Demarcação de Divisas no Campo', 'Mediação de Confrontantes']
+  }
+];
+---
+
+<Layout 
+  title="Sobre Nós | SC Topografia e Planejamento - Rio Negrinho"
+  description="Mais de 20 anos de tradição técnica no campo. Conheça a história da SC Topografia e os sócios Solanjo Antonio Gertler e Clodoaldo Veres."
+>
+  <!-- Hero da Página Sobre -->
+  <section class="relative bg-brand-dark text-white py-20 lg:py-24 overflow-hidden -mt-16 sm:-mt-20 pt-24">
+    <div class="absolute inset-0 opacity-25">
+      <img 
+        src="/images/topografia-field.webp" 
+        alt="Agrimensura no Campo" 
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/95 to-brand-dark/75"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-900/60 border border-emerald-400/40 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-6">
+          <Award class="w-4 h-4" />
+          <span>Institucional & Tradição no Campo</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight mb-6">
+          Mais de 20 Anos Construindo Segurança Jurídica no Campo
+        </h1>
+        <p class="text-base sm:text-lg text-gray-300 leading-relaxed mb-8 font-medium">
+          A SC Topografia e Planejamento nasceu no coração do Planalto Norte de Santa Catarina. Nossa missão é garantir que o produtor rural e as famílias tenham suas terras medidas e documentadas com exatidão e tranquilidade no cartório.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Números de Destaque Impactantes -->
+  <section class="py-14 bg-brand-primary text-white shadow-inner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        {stats.map((s) => (
+          <div class="space-y-1">
+            <span class="text-3xl sm:text-5xl font-black text-white block tracking-tight">
+              {s.value}
+            </span>
+            <span class="text-sm sm:text-base font-bold text-emerald-100 block">
+              {s.label}
+            </span>
+            <span class="text-xs text-emerald-200/90 block max-w-[220px] mx-auto leading-relaxed">
+              {s.desc}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- História e Trajetória 100% Focada no Campo -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 text-brand-primary text-xs font-bold uppercase tracking-wider">
+            Nossa Trajetória
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-heading tracking-tight">
+            Tradição técnica que conhece cada estrada de chão da região
+          </h2>
+          <p class="text-base text-slate-body leading-relaxed font-medium">
+            Com sede na <strong>Rodovia BR-280 em Rio Negrinho</strong>, a SC Topografia consolidou-se como o parceiro de confiança para quem vive e produz no campo: produtores rurais, famílias em processo de herança e indústrias da madeira.
+          </p>
+          <p class="text-base text-slate-body leading-relaxed">
+            Não somos um escritório de gabinete distante da realidade da roça. Nossa equipe calça bota, anda no barro, abre picada no mato e sobe morro com <strong>receptores GNSS RTK de alta precisão</strong> para achar o marco e a divisa exata.
+          </p>
+          <p class="text-base text-slate-body leading-relaxed">
+            E quando a medição termina no campo, começa a nossa maior dedicação: <strong>correr atrás de cada confrontante</strong> para colher as assinaturas com paciência e clareza, e conduzir o processo no cartório de registro de imóveis até a entrega da matrícula regularizada.
+          </p>
+
+          <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-5 rounded-2xl bg-brand-lightBg border border-gray-200/80">
+              <h4 class="font-bold text-slate-heading text-sm mb-1 flex items-center gap-2">
+                <ShieldCheck class="w-4 h-4 text-brand-primary" />
+                <span>Emissão de ART no CREA</span>
+              </h4>
+              <p class="text-xs text-slate-body leading-relaxed">Garantia e responsabilidade técnica profissional formalizada em cada laudo emitido.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-brand-lightBg border border-gray-200/80">
+              <h4 class="font-bold text-slate-heading text-sm mb-1 flex items-center gap-2">
+                <FileCheck class="w-4 h-4 text-brand-primary" />
+                <span>Padrão Homologado INCRA</span>
+              </h4>
+              <p class="text-xs text-slate-body leading-relaxed">Certificações georreferenciadas prontas para o SIGEF, CAR e aprovação em cartório.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="relative rounded-3xl overflow-hidden shadow-xl border border-gray-200">
+            <img 
+              src="/images/georreferenciamento.webp" 
+              alt="Paisagem Rural do Planalto Norte" 
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/40 to-transparent flex items-end p-8">
+              <div class="text-white">
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-300">Área de Atuação Tradicional</span>
+                <p class="text-sm font-medium mt-1">Rio Negrinho, São Bento do Sul, Mafra, Campo Alegre, Itaiópolis, Papanduva, Piên, Rio Negro e região.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Apresentação dos Sócios (Solanjo e Clodoaldo - Sócios Iguais) -->
+  <section class="py-20 bg-brand-lightBg border-t border-gray-200/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-brand-primary text-xs font-bold uppercase tracking-wider mb-3">
+          Sócios & Responsáveis Técnicos
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-heading tracking-tight mb-4">
+          Quem Está à Frente da SC Topografia
+        </h2>
+        <p class="text-base text-slate-body leading-relaxed font-medium">
+          Sócios com dedicação integral que combinam a assinatura técnica legal à vivência prática no campo e no relacionamento diário com as famílias.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {partners.map((partner) => (
+          <div class="bg-white rounded-3xl p-8 sm:p-9 border border-gray-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <!-- Avatar e Identificação -->
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-brand-primary flex items-center justify-center font-black text-2xl shadow-inner border border-emerald-200">
+                  {partner.name.split(' ')[0].charAt(0)}{partner.name.split(' ').slice(-1)[0].charAt(0)}
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-heading">{partner.name}</h3>
+                  <span class="text-xs font-bold text-brand-primary uppercase tracking-wider block mt-0.5">
+                    {partner.role}
+                  </span>
+                  <span class="text-xs text-slate-muted block mt-0.5 font-medium">
+                    {partner.emphasis}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Biografia Fiel às Atribuições -->
+              <p class="text-sm text-slate-body leading-relaxed mb-6 font-medium">
+                {partner.bio}
+              </p>
+
+              <!-- Áreas de Especialidade -->
+              <div class="space-y-2 pt-2 border-t border-gray-100">
+                <span class="text-[11px] font-bold text-slate-muted uppercase tracking-wider block">Áreas de Atuação:</span>
+                <div class="flex flex-wrap gap-2">
+                  {partner.specialties.map((spec) => (
+                    <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full border border-emerald-100">
+                      {spec}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Botão de Contato Direto -->
+            <div class="pt-6 mt-6 border-t border-gray-100">
+              <a
+                href="https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20conversar%20com%20a%20equipe%20da%20SC%20Topografia."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-xs font-bold text-brand-primary hover:text-brand-primaryHover transition-colors"
+              >
+                <span>Falar diretamente no WhatsApp</span>
+                <ArrowRight class="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Banner CTA Final -->
+  <section class="py-16 bg-brand-dark text-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-2xl sm:text-4xl font-extrabold text-white mb-4">
+        Precisando medir ou regularizar sua propriedade?
+      </h3>
+      <p class="text-sm sm:text-base text-gray-200 mb-8 max-w-2xl mx-auto font-medium">
+        Estamos prontos para visitar seu terreno, orientar sua família e cuidar de toda a burocracia do cartório por você.
+      </p>
+      <a
+        href="https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20propriedade."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-base shadow-xl hover:scale-105 transition-all"
+      >
+        <MessageSquare class="w-5 h-5 text-emerald-200" />
+        <span>Solicitar Orçamento no WhatsApp</span>
+      </a>
+    </div>
+  </section>
+</Layout>

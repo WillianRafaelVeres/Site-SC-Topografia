@@ -1,0 +1,77 @@
+---
+import { Phone, Mail, MapPin, ShieldCheck, Award } from 'lucide-astro';
+---
+
+<footer class="bg-brand-dark text-gray-300 border-t border-emerald-950/60 py-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-white/10">
+      
+      <!-- Logo Oficial e Descrição Curta -->
+      <div class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+        <a href="/" class="flex-shrink-0">
+          <img 
+            src="/images/logo-white.png" 
+            alt="SC Topografia" 
+            class="h-10 w-auto object-contain"
+            loading="lazy"
+          />
+        </a>
+        <div class="border-t sm:border-t-0 sm:border-l border-white/15 pt-2 sm:pt-0 sm:pl-5">
+          <p class="text-xs text-gray-300 max-w-sm leading-relaxed">
+            Mais de 20 anos de tradição e segurança jurídica em topografia e operações florestais no Planalto Norte de SC e Sul do PR.
+          </p>
+        </div>
+      </div>
+
+      <!-- Links Rápidos de Navegação -->
+      <nav class="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-gray-300">
+        <a href="/" class="hover:text-emerald-400 transition-colors">Início</a>
+        <a href="/topografia" class="hover:text-emerald-400 transition-colors">Topografia & Agrimensura</a>
+        <a href="/florestal" class="hover:text-emerald-400 transition-colors">Operações Florestais</a>
+        <a href="/sobre" class="hover:text-emerald-400 transition-colors">Sobre Nós</a>
+        <a href="/contato" class="hover:text-emerald-400 transition-colors">Contato</a>
+      </nav>
+
+      <!-- Contatos Rápidos -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 text-xs">
+        <a href="tel:4736444235" class="hover:text-white transition-colors flex items-center gap-1.5">
+          <Phone class="w-3.5 h-3.5 text-brand-accent" />
+          <span>(47) 3644-4235</span>
+        </a>
+        <a 
+          href="https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20um%20or%C3%A7amento." 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="text-emerald-300 hover:text-white font-bold transition-colors flex items-center gap-1.5"
+        >
+          <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
+          <span>(47) 98438-8016</span>
+        </a>
+        <a href="mailto:sctopoplanejamento@yahoo.com" class="hover:text-white transition-colors flex items-center gap-1.5">
+          <Mail class="w-3.5 h-3.5 text-brand-accent" />
+          <span>sctopoplanejamento@yahoo.com</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Barra Inferior de Direitos e Credenciais -->
+    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-400 gap-3 text-center sm:text-left">
+      <div class="flex items-center gap-4 flex-wrap justify-center">
+        <span class="flex items-center gap-1 text-emerald-300">
+          <ShieldCheck class="w-3.5 h-3.5 text-brand-accent" />
+          <span>ART no CREA</span>
+        </span>
+        <span class="flex items-center gap-1 text-emerald-300">
+          <Award class="w-3.5 h-3.5 text-brand-accent" />
+          <span>Padrão INCRA (SIGEF)</span>
+        </span>
+        <span>• BR-280, 586 - Sala 05, Rio Negrinho - SC</span>
+      </div>
+
+      <div>
+        © {new Date().getFullYear()} SC Topografia e Planejamento. Precisão no campo, tranquilidade no cartório.
+      </div>
+    </div>
+  </div>
+</footer>

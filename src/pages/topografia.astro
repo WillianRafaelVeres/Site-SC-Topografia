@@ -1,0 +1,242 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { 
+  Compass, Map, FileCheck, Globe, Building2, CheckCircle2, 
+  ArrowRight, ShieldCheck, Ruler, Layers, Phone, MessageSquare, Cpu
+} from 'lucide-astro';
+
+const services = [
+  {
+    id: 'retificacao',
+    title: 'Regularização Fundiária, Usucapião e Retificação de Área',
+    badge: '1º Prioridade — Cartório & Escritura',
+    icon: FileCheck,
+    image: '/images/servico-retificacao.webp',
+    whatIs: 'Correção técnica de confrontações e metragens divergentes na matrícula do imóvel, além de elaboração completa das plantas e memoriais técnicos para processos de usucapião extrajudicial em cartório ou judicial.',
+    whoNeeds: [
+      'Quem comprou ou herdou a terra e descobriu que a área real medida em campo não bate com a metragem escrita no cartório (Retificação Administrativa de Área).',
+      'Quem possui a posse mansa e pacífica há anos mas não tem a escritura definitiva e precisa regularizar o imóvel (Usucapião).',
+      'Proprietários com sobreposição de divisas ou notas de devolução emitidas pelo registrador de imóveis.',
+      'Famílias em processo de partilha ou inventário que necessitam de plantas com anuência dos confrontantes.'
+    ],
+    whatsappMsg: 'Olá! Gostaria de uma orientação para Regularização Fundiária, Usucapião ou Retificação de Área.'
+  },
+  {
+    id: 'desmembramento',
+    title: 'Medição, Divisão de Terrenos e Desmembramento',
+    badge: 'Campo & Divisão Familiar',
+    icon: Map,
+    image: '/images/servico-divisao.webp',
+    whatIs: 'Levantamento planialtimétrico no terreno para divisão física da propriedade entre herdeiros, desmembramento de frações para venda ou conferência minuciosa de cercas e divisas.',
+    whoNeeds: [
+      'Famílias que desejam partilhar um sítio, chácara ou fazenda com limites claros, evitando qualquer atrito entre parentes.',
+      'Quem quer desmembrar parte da propriedade para venda segura de um lote ou fração ideal.',
+      'Proprietários que desconfiam de deslocamento de cercas ou invasão de limites por confrontantes.',
+      'Demarcação física de mourões, marcos de concreto e abertura de picadas no mato.'
+    ],
+    whatsappMsg: 'Olá! Gostaria de um orçamento para Medição e Divisão de Terreno.'
+  },
+  {
+    id: 'georreferenciamento',
+    title: 'Georreferenciamento INCRA (SIGEF) & CAR',
+    badge: 'Obrigatoriedade Rural',
+    icon: Globe,
+    image: '/images/servico-georreferenciamento.webp',
+    whatIs: 'Determinação das coordenadas geográficas geodésicas dos vértices do imóvel rural no padrão exigido pelo INCRA (SIGEF) e elaboração do Cadastro Ambiental Rural (CAR).',
+    whoNeeds: [
+      'Proprietários rurais cumprindo as exigências da Lei 10.267/01 para manter o imóvel regular perante o governo.',
+      'Produtores rurais que buscam financiamento bancário, crédito agrícola ou seguro rural no Banco do Brasil e demais bancos.',
+      'Quem vai realizar qualquer transação de compra, venda, hipoteca ou doação de imóvel rural em cartório.',
+      'Mapeamento de Áreas de Preservação Permanente (APPs) e Reserva Legal para o CAR.'
+    ],
+    whatsappMsg: 'Olá! Gostaria de solicitar Georreferenciamento INCRA (SIGEF) e CAR.'
+  },
+  {
+    id: 'obras',
+    title: 'Topografia para Engenharia, Loteamentos e Obras',
+    badge: 'Construtoras & Indústrias',
+    icon: Building2,
+    image: '/images/servico-obras.webp',
+    whatIs: 'Apoio topográfico completo para o canteiro de obras: locação de eixos de fundação, nivelamento de platôs e cálculo volumétrico rigoroso de terraplenagem.',
+    whoNeeds: [
+      'Construtoras e loteadores que necessitam de locação milimétrica de gabaritos, estacas e redes pluviais.',
+      'Cálculo preciso de cubagem de corte e aterro, garantindo economia em horas de máquina e fretes de caçamba.',
+      'Indústrias na região da BR-280 que planejam ampliações fabris, pátios de carga e terraplenagem.',
+      'Levantamento cadastral as-built de obras concluídas para habite-se.'
+    ],
+    whatsappMsg: 'Olá! Gostaria de um orçamento para Topografia de Obras e Engenharia.'
+  }
+];
+---
+
+<Layout 
+  title="Topografia & Agrimensura | SC Topografia - Rio Negrinho"
+  description="Serviços de regularização fundiária, usucapião, retificação de área, medição de terrenos, desmembramentos e georreferenciamento INCRA em Rio Negrinho e região."
+>
+  <!-- Hero da Página de Topografia -->
+  <section class="relative bg-brand-dark text-white py-20 lg:py-24 overflow-hidden -mt-16 sm:-mt-20 pt-24">
+    <div class="absolute inset-0 opacity-25">
+      <img 
+        src="/images/topografia-field.webp" 
+        alt="Topografia de Campo" 
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/95 to-brand-dark/75"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-primary/40 border border-emerald-400/40 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-6">
+          <Compass class="w-4 h-4" />
+          <span>Pilar 01 — Topografia & Agrimensura</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight mb-6">
+          Topografia de Precisão & Regularização Fundiária
+        </h1>
+        <p class="text-base sm:text-lg text-gray-300 leading-relaxed mb-8 font-medium">
+          Do levantamento com GPS RTK no campo até a aprovação definitiva no cartório. Segurança técnica com emissão de ART no CREA e mais de duas décadas de experiência.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20um%20or%C3%A7amento%20para%20servi%C3%A7o%20de%20topografia."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-sm shadow-lg hover:shadow-xl transition-all"
+          >
+            <MessageSquare class="w-4 h-4 text-emerald-200" />
+            <span>Falar com o Responsável Técnico</span>
+          </a>
+          <a
+            href="tel:4736444235"
+            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20 transition-colors"
+          >
+            <Phone class="w-4 h-4 text-emerald-400" />
+            <span>(47) 3644-4235</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lista de Serviços na Ordem Estratégica -->
+  <section class="py-20 bg-brand-lightBg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+      
+      {services.map((s, idx) => (
+        <div id={s.id} class="bg-white rounded-3xl overflow-hidden border border-gray-200/90 shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0">
+          
+          <!-- Imagem Lateral -->
+          <div class={`lg:col-span-5 relative min-h-[280px] lg:min-h-full ${idx % 2 === 1 ? 'lg:order-last' : ''}`}>
+            <img 
+              src={s.image} 
+              alt={s.title} 
+              class="w-full h-full object-cover absolute inset-0"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="px-3.5 py-1.5 rounded-full bg-brand-primary text-white text-xs font-bold tracking-wider shadow-md">
+                {s.badge}
+              </span>
+            </div>
+          </div>
+
+          <!-- Conteúdo Explicativo Limpo e Organizado -->
+          <div class="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 text-brand-primary text-xs font-bold uppercase tracking-wider mb-2">
+                <ShieldCheck class="w-4 h-4" />
+                <span>Emissão de ART no CREA</span>
+              </div>
+
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-heading mb-4 leading-tight">
+                {s.title}
+              </h2>
+
+              <p class="text-sm sm:text-base text-slate-body leading-relaxed mb-6 font-medium">
+                {s.whatIs}
+              </p>
+
+              <!-- Bloco Para Quem É -->
+              <div class="bg-brand-lightBg rounded-2xl p-6 border border-gray-200/80 mb-6">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-dark mb-3">
+                  Quando você precisa deste serviço:
+                </h4>
+                <ul class="space-y-2.5">
+                  {s.whoNeeds.map((item) => (
+                    <li class="flex items-start gap-2.5 text-xs sm:text-sm text-slate-heading">
+                      <CheckCircle2 class="w-4 h-4 text-brand-primary flex-shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <!-- Botão WhatsApp Direto para o Serviço -->
+            <div class="pt-4 border-t border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+              <span class="text-xs text-slate-muted font-medium">
+                Atendimento direto com a equipe técnica
+              </span>
+              <a
+                href={`https://wa.me/5547984388016?text=${encodeURIComponent(s.whatsappMsg)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md transition-all group"
+              >
+                <span>Solicitar Orçamento deste Serviço</span>
+                <ArrowRight class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+  </section>
+
+  <!-- Seção de Equipamentos e Tecnologia -->
+  <section class="py-16 bg-white border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-heading mb-3">
+          Equipamentos e Tecnologia Empregados
+        </h3>
+        <p class="text-sm text-slate-body font-medium">
+          Trabalhamos com instrumental de alta precisão e constante aprimoramento técnico.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- GNSS RTK -->
+        <div class="p-6 rounded-3xl bg-brand-lightBg border border-gray-200/80 text-center">
+          <div class="w-14 h-14 rounded-2xl bg-white border border-gray-200 text-brand-primary flex items-center justify-center mx-auto mb-4 shadow-xs">
+            <Globe class="w-7 h-7" />
+          </div>
+          <h4 class="font-bold text-slate-heading text-base mb-2">GNSS RTK de Alta Precisão</h4>
+          <p class="text-xs text-slate-body leading-relaxed">Rastreamento de satélites com dupla frequência em tempo real, garantindo precisão milimétrica nas divisas e limites no campo.</p>
+        </div>
+
+        <!-- Estação Total -->
+        <div class="p-6 rounded-3xl bg-brand-lightBg border border-gray-200/80 text-center">
+          <div class="w-14 h-14 rounded-2xl bg-white border border-gray-200 text-brand-primary flex items-center justify-center mx-auto mb-4 shadow-xs">
+            <Ruler class="w-7 h-7" />
+          </div>
+          <h4 class="font-bold text-slate-heading text-base mb-2">Estação Total</h4>
+          <p class="text-xs text-slate-body leading-relaxed">Medições angulares e distâncias com alta exatidão para locação de obras, eixos industriais e alinhamentos periciais.</p>
+        </div>
+
+        <!-- Softwares e Aprimoramento -->
+        <div class="p-6 rounded-3xl bg-brand-lightBg border border-gray-200/80 text-center">
+          <div class="w-14 h-14 rounded-2xl bg-white border border-gray-200 text-brand-primary flex items-center justify-center mx-auto mb-4 shadow-xs">
+            <Cpu class="w-7 h-7" />
+          </div>
+          <h4 class="font-bold text-slate-heading text-base mb-2">Softwares Homologados</h4>
+          <p class="text-xs text-slate-body leading-relaxed">Buscamos sempre constante aprimoramento e inovação tecnológica para entregar serviços com a máxima qualidade, agilidade e conformidade legal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,134 @@
+---
+import { Map, FileText, Globe, Trees, Building2, ArrowRight } from 'lucide-astro';
+
+const services = [
+  {
+    title: 'Medição e Divisão de Terrenos',
+    category: 'Topografia e Agrimensura',
+    icon: Map,
+    description: 'Levantamento planialtimétrico cadastral de alta precisão com GNSS RTK.',
+    target: 'Para quem quer saber os limites exatos da propriedade, dividir área entre herdeiros ou vender lotes sem risco de invasão.',
+    linkWhatsApp: 'https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20Medi%C3%A7%C3%A3o%20e%20Divis%C3%A3o%20de%20Terrenos.'
+  },
+  {
+    title: 'Escritura e Usucapião',
+    category: 'Regularização Fundiária',
+    icon: FileText,
+    description: 'Elaboração técnica de plantas e memoriais para instrução judicial ou extrajudicial.',
+    target: 'Para quem possui a posse da terra mas precisa da escritura pública registrada no cartório para garantir a segurança jurídica.',
+    linkWhatsApp: 'https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20Escritura%20e%20Usucapi%C3%A3o.'
+  },
+  {
+    title: 'Georreferenciamento INCRA e CAR',
+    category: 'Conformidade Legal',
+    icon: Globe,
+    description: 'Certificação SIGEF/INCRA e elaboração do Cadastro Ambiental Rural.',
+    target: 'Obrigatório para propriedades rurais que pretendem obter financiamentos agrícolas, partilhar heranças ou realizar compra e venda.',
+    linkWhatsApp: 'https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20Georreferenciamento%20INCRA%20e%20CAR.'
+  },
+  {
+    title: 'Venda de Madeira e Operações Florestais',
+    category: 'Operações Florestais',
+    icon: Trees,
+    description: 'Comercialização de Pinus em tora própria e prestação de serviço de corte/baldeio.',
+    target: 'Para serrarias, laminadoras e indústrias moveleiras que buscam fornecimento programado ou abate técnico com cubagem exata.',
+    linkWhatsApp: 'https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20Madeira%20em%20Tora%20e%20Corte%20Florestal.'
+  },
+  {
+    title: 'Topografia para Obras e Indústrias',
+    category: 'Engenharia Civil',
+    icon: Building2,
+    description: 'Locação de fundações, terraplenagem e cálculo volumétrico de corte e aterro.',
+    target: 'Para construtoras, loteadores e indústrias que exigem implantação rigorosa de projetos conforme o memorial de engenharia.',
+    linkWhatsApp: 'https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20Topografia%20para%20Obras.'
+  }
+];
+---
+
+<section class="py-20 bg-white border-t border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-brand-primary text-xs font-bold uppercase tracking-wider mb-3">
+        Linguagem Simples & Direta
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-heading tracking-tight mb-4">
+        Serviços explicados de forma clara para você
+      </h2>
+      <p class="text-base text-slate-body">
+        Entenda o que cada serviço resolve e como podemos ajudar seu imóvel ou sua empresa.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((s) => {
+        const Icon = s.icon;
+        return (
+          <div class="bg-brand-lightBg rounded-2xl p-7 border border-gray-200/90 shadow-xs hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-white border border-gray-200 text-brand-primary group-hover:bg-brand-primary group-hover:text-white flex items-center justify-center transition-colors shadow-xs">
+                  <Icon class="w-6 h-6" />
+                </div>
+                <span class="text-[11px] font-semibold tracking-wider uppercase text-emerald-800 bg-emerald-100/70 px-2.5 py-1 rounded-full">
+                  {s.category}
+                </span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-heading mb-2 group-hover:text-brand-primary transition-colors">
+                {s.title}
+              </h3>
+
+              <p class="text-xs text-slate-muted mb-4 font-medium">
+                {s.description}
+              </p>
+
+              <div class="p-3.5 rounded-xl bg-white border border-gray-200/80 mb-6">
+                <span class="block text-[11px] font-bold text-brand-dark uppercase tracking-wider mb-1">Para quem é:</span>
+                <p class="text-xs text-slate-body leading-relaxed">
+                  {s.target}
+                </p>
+              </div>
+            </div>
+
+            <a
+              href={s.linkWhatsApp}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-between w-full px-4 py-3 rounded-xl bg-white hover:bg-brand-primary text-brand-primary hover:text-white text-xs font-bold border border-emerald-300/60 shadow-xs transition-all duration-200"
+            >
+              <span>Tirar dúvidas deste serviço via WhatsApp</span>
+              <ArrowRight class="w-4 h-4" />
+            </a>
+          </div>
+        );
+      })}
+
+      <!-- Card CTA Adicional -->
+      <div class="bg-gradient-to-br from-brand-dark to-emerald-950 text-white rounded-2xl p-7 flex flex-col justify-between shadow-lg">
+        <div>
+          <span class="text-[11px] font-semibold tracking-wider uppercase text-emerald-300 bg-emerald-900/60 px-2.5 py-1 rounded-full inline-block mb-5">
+            Atendimento Personalizado
+          </span>
+          <h3 class="text-2xl font-bold mb-3">
+            Não tem certeza de qual serviço precisa?
+          </h3>
+          <p class="text-sm text-gray-200 leading-relaxed mb-6">
+            Muitas vezes um problema de divisa ou inventário exige uma combinação de levantamento de campo e assessoria documental. Nossos responsáveis técnicos avaliam sua situação.
+          </p>
+        </div>
+
+        <a
+          href="https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20uma%20orienta%C3%A7%C3%A3o%20t%C3%A9cnica%20sobre%20meu%20im%C3%B3vel."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-sm shadow-md transition-all"
+        >
+          <span>Falar com o Responsável Técnico</span>
+          <ArrowRight class="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

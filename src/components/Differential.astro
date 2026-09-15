@@ -1,0 +1,107 @@
+---
+import { Satellite, Users2, FileCheck, ArrowRight, ShieldAlert, Sparkles } from 'lucide-astro';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Medição Exata no Campo',
+    icon: Satellite,
+    description: 'Nossa equipe técnica vai até sua propriedade e define os limites com extrema exatidão através de GPS RTK de alta precisão.',
+    highlight: 'Definição milimétrica de divisas sem margem para dúvidas ou conflitos.'
+  },
+  {
+    number: '02',
+    title: 'Corremos Atrás dos Confrontantes',
+    icon: Users2,
+    description: 'Você não precisa bater de porta em porta nem se desgastar com vizinhos. Nós localizamos e colhemos as assinaturas de todos os confrontantes.',
+    highlight: 'Cuidamos de 100% da coleta de anuências e assinaturas de vizinhos.'
+  },
+  {
+    number: '03',
+    title: 'Resolvemos Tudo no Cartório',
+    icon: FileCheck,
+    description: 'Montamos todas as plantas e memoriais técnicos e conduzimos todos os trâmites e exigências do cartório até a escritura averbada.',
+    highlight: 'Você só espera o documento pronto, com total segurança jurídica.'
+  }
+];
+---
+
+<section class="py-20 lg:py-28 bg-brand-lightBg border-t border-gray-200/80 relative overflow-hidden">
+  <!-- Detalhes decorativos de fundo suaves -->
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-emerald-700/5 blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Cabeçalho -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-emerald-100 text-brand-primary text-xs font-bold uppercase tracking-wider mb-3">
+        <Sparkles class="w-3.5 h-3.5" />
+        <span>Nosso Diferencial</span>
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-heading tracking-tight mb-4">
+        Do campo até o cartório, <br class="hidden sm:inline" />
+        <span class="text-brand-primary">a gente cuida de absolutamente tudo.</span>
+      </h2>
+      <p class="text-base sm:text-lg text-slate-body leading-relaxed font-medium">
+        Ao contratar a SC Topografia, a responsabilidade é nossa: nós vamos a campo, medimos, corremos atrás de cada confrontante e resolvemos todas as exigências do cartório. Você não tem dor de cabeça.
+      </p>
+    </div>
+
+    <!-- Os 3 Passos Ilustrados -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      {steps.map((step) => {
+        const IconComponent = step.icon;
+        return (
+          <div class="relative bg-white rounded-3xl p-8 border border-gray-200/80 shadow-sm hover:shadow-xl hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group">
+            
+            <div>
+              <!-- Número e Ícone -->
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-4xl font-black text-gray-200 group-hover:text-emerald-500/30 transition-colors">
+                  {step.number}
+                </span>
+                <div class="w-14 h-14 rounded-2xl bg-emerald-50 group-hover:bg-brand-primary text-brand-primary group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm">
+                  <IconComponent class="w-7 h-7 transition-transform group-hover:scale-110" />
+                </div>
+              </div>
+
+              <!-- Título -->
+              <h3 class="text-xl font-bold text-slate-heading mb-3 group-hover:text-brand-primary transition-colors">
+                {step.title}
+              </h3>
+
+              <!-- Descrição -->
+              <p class="text-slate-body text-sm leading-relaxed mb-6 font-medium">
+                {step.description}
+              </p>
+            </div>
+
+            <!-- Destaque / Conclusão do Passo -->
+            <div class="pt-4 border-t border-gray-100 text-xs font-bold text-emerald-900 bg-emerald-50/70 p-3.5 rounded-xl">
+              ✓ {step.highlight}
+            </div>
+
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Chamada para Ação -->
+    <div class="mt-14 text-center">
+      <a
+        href="https://wa.me/5547984388016?text=Ol%C3%A1%21%20Preciso%20de%20ajuda%20para%20regularizar%20meu%20im%C3%B3vel."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+      >
+        <span>Fale com Quem Resolve no WhatsApp</span>
+        <ArrowRight class="w-5 h-5" />
+      </a>
+      <p class="text-xs text-slate-muted mt-3 font-medium">
+        Atendimento técnico humanizado e sem burocracia para você.
+      </p>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+const partners = [
+  { name: 'BERNECK', file: '/images/parceiros/berneck.svg', desc: 'Painéis e Serrados' },
+  { name: 'BATTISTELLA', file: '/images/parceiros/battistella.svg', desc: 'Operações Florestais' },
+  { name: 'RUDNICK', file: '/images/parceiros/rudnick.svg', desc: 'Indústria Madeireira' },
+  { name: 'PLANALTO NORTE', file: '/images/parceiros/planalto.svg', desc: 'Empreendimentos & Obras' },
+  { name: 'AGROFLORESTAL SC', file: '/images/parceiros/agroflorestal.svg', desc: 'Gestão de Ativos' },
+  { name: 'COOPERATIVA RURAL', file: '/images/parceiros/cooperativa.svg', desc: 'Produtores do Sul' },
+];
+---
+
+<section class="py-8 bg-brand-lightBg border-y border-gray-200/70 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-5">
+      <p class="text-xs uppercase tracking-widest text-slate-muted font-bold">
+        Empresas, indústrias e produtores que confiam em nosso trabalho
+      </p>
+    </div>
+
+    <!-- Carrossel Marquee Infinito Suave Sem Caixas Quadradas Pesadas -->
+    <div class="relative w-full overflow-hidden mask-fade">
+      <div class="flex items-center gap-12 py-2 animate-marquee whitespace-nowrap">
+        {/* Primeiro loop */}
+        {partners.map((p) => (
+          <div class="inline-flex items-center justify-center px-4 py-2 hover:scale-105 transition-transform duration-300">
+            <img 
+              src={p.file} 
+              alt={p.name} 
+              class="h-8 sm:h-9 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity duration-300"
+              loading="lazy"
+            />
+          </div>
+        ))}
+
+        {/* Segundo loop para efeito contínuo infinito */}
+        {partners.map((p) => (
+          <div class="inline-flex items-center justify-center px-4 py-2 hover:scale-105 transition-transform duration-300">
+            <img 
+              src={p.file} 
+              alt={p.name} 
+              class="h-8 sm:h-9 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity duration-300"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  /* Efeito de fade suave nas laterais */
+  .mask-fade {
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  }
+</style>
