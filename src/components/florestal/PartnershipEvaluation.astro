@@ -1,0 +1,146 @@
+---
+import { ScanSearch, MessageSquare, Lock } from 'lucide-astro';
+
+const usageOptions = ['Lavoura', 'Pastagem', 'Área florestal', 'Sem uso definido', 'Outro', 'Não sei informar'];
+const accessOptions = ['Sim', 'Parcialmente', 'Não sei'];
+
+const fieldClass =
+  'w-full min-h-[52px] rounded-2xl border border-gray-300 bg-white px-4 py-3 text-base text-slate-heading placeholder:text-slate-muted/70 focus:border-brand-primary focus:outline-none focus:ring-4 focus:ring-brand-primary/15';
+const labelClass = 'block text-sm font-bold text-slate-heading mb-2';
+---
+
+<section id="avaliacao" class="scroll-mt-24 py-20 lg:py-28 bg-gradient-to-b from-emerald-50/70 to-brand-lightBg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+      <div class="lg:col-span-5 lg:sticky lg:top-28">
+        <span class="inline-flex w-14 h-14 rounded-2xl bg-brand-primary text-white items-center justify-center shadow-lg mb-6">
+          <ScanSearch class="w-7 h-7" aria-hidden="true" />
+        </span>
+        <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-slate-heading tracking-tight leading-tight mb-5 text-balance">
+          Quer saber se a sua propriedade pode participar?
+        </h2>
+        <p class="text-lg text-slate-body leading-relaxed mb-8">
+          Não precisamos começar por uma decisão. Começamos entendendo a sua área.
+        </p>
+        <ol class="space-y-4 text-sm text-slate-body">
+          <li class="flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-white border border-emerald-200 text-brand-primary font-bold flex items-center justify-center">1</span><span class="pt-1">Você envia as informações básicas da propriedade pelo WhatsApp.</span></li>
+          <li class="flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-white border border-emerald-200 text-brand-primary font-bold flex items-center justify-center">2</span><span class="pt-1">Nossa equipe conversa com você e faz a avaliação de área para Pinus.</span></li>
+          <li class="flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-white border border-emerald-200 text-brand-primary font-bold flex items-center justify-center">3</span><span class="pt-1">Se houver viabilidade, apresentamos uma proposta própria para a sua área.</span></li>
+        </ol>
+      </div>
+
+      <form id="evaluation-form" class="lg:col-span-7 bg-white rounded-[2rem] border border-gray-200/80 shadow-xl p-5 sm:p-8 lg:p-10" novalidate>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="sm:col-span-2">
+            <label for="aval-nome" class={labelClass}>Nome</label>
+            <input id="aval-nome" name="nome" type="text" autocomplete="name" required class={fieldClass} />
+          </div>
+          <div>
+            <label for="aval-municipio" class={labelClass}>Município da propriedade</label>
+            <input id="aval-municipio" name="municipio" type="text" autocomplete="address-level2" required class={fieldClass} />
+          </div>
+          <div>
+            <label for="aval-area" class={labelClass}>Área aproximada (hectares)</label>
+            <input id="aval-area" name="area" type="text" inputmode="decimal" autocomplete="off" required placeholder="Ex.: 12" class={fieldClass} />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="aval-uso" class={labelClass}>Uso atual</label>
+            <select id="aval-uso" name="uso" required class={`${fieldClass} appearance-auto`}>
+              <option value="" selected disabled>Selecione</option>
+              {usageOptions.map((option) => <option value={option}>{option}</option>)}
+            </select>
+          </div>
+          <fieldset class="sm:col-span-2">
+            <legend class={labelClass}>Acesso para máquinas</legend>
+            <div class="grid grid-cols-3 gap-2">
+              {accessOptions.map((option, index) => (
+                <label class="relative">
+                  <input type="radio" name="acesso" value={option} required={index === 0} class="peer sr-only" />
+                  <span class="flex items-center justify-center min-h-[52px] px-2 rounded-2xl border border-gray-300 text-sm font-semibold text-slate-heading text-center cursor-pointer transition-colors hover:border-brand-primary peer-checked:bg-brand-primary peer-checked:border-brand-primary peer-checked:text-white peer-focus-visible:ring-4 peer-focus-visible:ring-brand-primary/30">
+                    {option}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          <div class="sm:col-span-2">
+            <label for="aval-obs" class={labelClass}>Conte um pouco sobre a propriedade <span class="font-normal text-slate-muted">(opcional)</span></label>
+            <textarea id="aval-obs" name="observacoes" rows="4" class={`${fieldClass} resize-y`}></textarea>
+          </div>
+        </div>
+
+        <p id="evaluation-error" class="hidden mt-5 rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 text-sm font-semibold text-amber-900" role="alert"></p>
+
+        <button
+          type="submit"
+          class="mt-6 w-full inline-flex items-center justify-center gap-2.5 min-h-[56px] px-6 py-4 rounded-full bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-base shadow-lg transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+        >
+          <MessageSquare class="w-5 h-5 text-emerald-200" aria-hidden="true" />
+          <span>Solicitar avaliação pelo WhatsApp</span>
+        </button>
+        <p class="mt-4 flex items-center justify-center gap-1.5 text-xs text-slate-muted text-center">
+          <Lock class="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+          Nenhum dado é armazenado no site. A mensagem é aberta no seu WhatsApp para você enviar.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { whatsappLink } from '../../data/parceriaFlorestal';
+
+  const form = document.getElementById('evaluation-form') as HTMLFormElement | null;
+  const errorEl = document.getElementById('evaluation-error');
+
+  if (form && errorEl) {
+    const labels: Record<string, string> = {
+      nome: 'Nome',
+      municipio: 'Município da propriedade',
+      area: 'Área aproximada',
+      uso: 'Uso atual',
+      acesso: 'Acesso para máquinas',
+    };
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const get = (key: string) => String(data.get(key) ?? '').trim();
+
+      const missing = Object.keys(labels).filter((key) => !get(key));
+      form.querySelectorAll<HTMLElement>('input, select').forEach((field) => {
+        const name = field.getAttribute('name') ?? '';
+        if (name in labels && field.getAttribute('type') !== 'radio') {
+          field.setAttribute('aria-invalid', missing.includes(name) ? 'true' : 'false');
+        }
+      });
+
+      if (missing.length) {
+        errorEl.textContent = `Preencha: ${missing.map((key) => labels[key]).join(', ')}.`;
+        errorEl.classList.remove('hidden');
+        const first = missing[0] === 'acesso'
+          ? form.querySelector<HTMLElement>('input[name="acesso"]')
+          : form.querySelector<HTMLElement>(`[name="${missing[0]}"]`);
+        first?.focus();
+        return;
+      }
+      errorEl.classList.add('hidden');
+
+      const lines = [
+        'Olá! Gostaria de avaliar minha propriedade para a Parceria Florestal SC.',
+        '',
+        `Nome: ${get('nome')}`,
+        `Município: ${get('municipio')}`,
+        `Área aproximada: ${get('area').replace(/\s*ha$/i, '')} ha`,
+        `Uso atual: ${get('uso')}`,
+        `Acesso de máquinas: ${get('acesso')}`,
+      ];
+      const notes = get('observacoes');
+      if (notes) lines.push(`Observações: ${notes}`);
+
+      const url = whatsappLink(lines.join('\n'));
+      const opened = window.open(url, '_blank', 'noopener');
+      if (!opened) window.location.href = url;
+    });
+  }
+</script>

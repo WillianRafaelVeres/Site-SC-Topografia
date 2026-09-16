@@ -1,0 +1,73 @@
+---
+import { Trees, ScanSearch, Sprout, FileText, ArrowDown } from 'lucide-astro';
+import { whatsappLink } from '../../data/parceriaFlorestal';
+
+const ctaLink = whatsappLink('Olá! Tenho uma propriedade e gostaria de saber se ela pode se enquadrar na Parceria Florestal SC.');
+
+const proofs = [
+  { icon: ScanSearch, text: 'Avaliação técnica da propriedade' },
+  { icon: Sprout, text: 'Implantação e manejo pela empresa' },
+  { icon: FileText, text: 'Proposta personalizada para cada área' },
+];
+---
+
+<section class="relative isolate overflow-hidden bg-brand-dark text-white -mt-16 sm:-mt-20">
+  <div class="absolute inset-0 -z-20">
+    <img
+      src="/images/hero-fallback.webp"
+      alt="Vista aérea de propriedades rurais com lavouras, pastagens e áreas de floresta de Pinus"
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-brand-dark via-brand-dark/90 to-brand-dark/40"></div>
+  <div class="absolute inset-x-0 bottom-0 h-32 -z-10 bg-gradient-to-t from-brand-dark/70 to-transparent"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-16 sm:pb-24 lg:min-h-[88vh] flex items-center">
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-emerald-300/30 text-emerald-100 text-xs font-bold uppercase tracking-wider mb-6">
+        <Trees class="w-4 h-4 text-emerald-300" aria-hidden="true" />
+        <span>Parceria Florestal SC</span>
+      </div>
+
+      <h1 class="text-[2rem] leading-[1.15] sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 text-balance">
+        Sua terra pode gerar renda sem você precisar cuidar da floresta sozinho.
+      </h1>
+
+      <p class="text-base sm:text-xl text-gray-200 leading-relaxed mb-9 max-w-2xl">
+        Você disponibiliza a área. A SC Topografia assume a implantação e o manejo florestal previstos no projeto. A proposta pode combinar renda ao longo dos anos com participação no valor da madeira.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+        <a
+          href={ctaLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2.5 min-h-[52px] px-7 py-3.5 rounded-full bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-base shadow-xl transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
+        >
+          <svg class="w-5 h-5 fill-current text-emerald-200" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.477-.15-.678.15-.2.3-.777.978-.953 1.179-.176.2-.351.226-.652.075-.301-.15-1.272-.469-2.423-1.496-.896-.799-1.5-1.787-1.676-2.088-.176-.3-.019-.463.132-.613.136-.135.301-.35.451-.526.15-.175.2-.3.301-.501.1-.2.05-.375-.025-.526-.075-.15-.677-1.631-.928-2.234-.244-.588-.493-.509-.678-.518-.176-.009-.376-.01-.577-.01-.2 0-.526.075-.802.376-.276.3-1.053 1.028-1.053 2.507 0 1.479 1.078 2.908 1.228 3.109.15.2 2.122 3.24 5.141 4.544.718.31 1.279.495 1.716.634.721.23 1.378.198 1.897.12.578-.088 1.78-.727 2.031-1.43.25-.702.25-1.304.175-1.43-.075-.125-.276-.201-.577-.351zM12.04 21.75c-1.748 0-3.414-.458-4.88-1.259l-.35-.19-3.633.953.97-3.541-.226-.361a9.696 9.696 0 0 1-1.488-5.187C2.433 6.81 7.237 2.006 13.093 2.006c2.838 0 5.506 1.106 7.513 3.112a10.56 10.56 0 0 1 3.106 7.516c-.001 5.856-4.805 10.616-11.672 10.616z"/></svg>
+          <span>Quero avaliar minha propriedade</span>
+        </a>
+        <a
+          href="#como-funciona"
+          class="inline-flex items-center justify-center gap-2 min-h-[52px] px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-base border border-white/25 backdrop-blur-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
+        >
+          <span>Entender como funciona</span>
+          <ArrowDown class="w-4 h-4 text-emerald-300" aria-hidden="true" />
+        </a>
+      </div>
+
+      <ul class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl">
+        {proofs.map(({ icon: Icon, text }) => (
+          <li class="flex items-center gap-3 text-sm text-gray-100 font-medium sm:border-l sm:border-white/15 sm:pl-4 first:sm:border-l-0 first:sm:pl-0">
+            <span class="flex-shrink-0 w-9 h-9 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center">
+              <Icon class="w-[18px] h-[18px] text-emerald-300" aria-hidden="true" />
+            </span>
+            <span>{text}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

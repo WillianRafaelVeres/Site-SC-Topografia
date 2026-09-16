@@ -1,0 +1,67 @@
+---
+import { House, LandPlot, Tractor, Hourglass, ArrowRight } from 'lucide-astro';
+
+const cards = [
+  {
+    icon: House,
+    title: 'Recebeu uma propriedade por herança?',
+    text: 'Uma terra pode ter potencial produtivo mesmo quando a família não deseja assumir diretamente uma nova atividade rural.',
+  },
+  {
+    icon: LandPlot,
+    title: 'Tem uma área sem uso definido?',
+    text: 'Podemos avaliar tecnicamente se existe viabilidade para implantação florestal.',
+  },
+  {
+    icon: Tractor,
+    title: 'Não quer administrar plantio e manutenção?',
+    text: 'A operação florestal prevista no projeto fica sob responsabilidade da empresa.',
+  },
+  {
+    icon: Hourglass,
+    title: 'Busca uma alternativa de longo prazo para a propriedade?',
+    text: 'A parceria combina utilização produtiva da terra com participação econômica definida em proposta.',
+  },
+];
+---
+
+<section class="py-20 lg:py-28 bg-brand-lightBg border-y border-gray-200/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <p class="text-xs font-bold uppercase tracking-wider text-brand-primary mb-3">Para quem é</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-heading tracking-tight leading-tight mb-4">
+        Para quem essa parceria pode fazer sentido?
+      </h2>
+      <p class="text-base sm:text-lg text-slate-body leading-relaxed">
+        Não é preciso já trabalhar com plantio de Pinus para pensar em uma parceria florestal em Santa Catarina. Muitas propriedades rurais têm potencial, mas os donos moram longe, têm outras atividades ou simplesmente não querem assumir uma nova operação.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      {cards.map(({ icon: Icon, title, text }) => (
+        <article class="group bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-sm hover:shadow-md hover:border-emerald-200 transition motion-reduce:transition-none flex gap-5">
+          <span class="flex-shrink-0 w-12 h-12 rounded-2xl bg-emerald-50 text-brand-primary flex items-center justify-center">
+            <Icon class="w-6 h-6" aria-hidden="true" />
+          </span>
+          <div>
+            <h3 class="text-lg sm:text-xl font-bold text-slate-heading leading-snug mb-2">{title}</h3>
+            <p class="text-sm sm:text-base text-slate-body leading-relaxed">{text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-3xl bg-white border border-dashed border-emerald-300 p-6 sm:px-8">
+      <p class="text-base font-semibold text-slate-heading">
+        Não sabe se sua área se encaixa? Essa é justamente a primeira etapa da avaliação.
+      </p>
+      <a
+        href="#avaliacao"
+        class="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-full bg-brand-dark hover:bg-brand-primary text-white font-bold text-sm transition-colors flex-shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+      >
+        <span>Avaliar minha área</span>
+        <ArrowRight class="w-4 h-4" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</section>

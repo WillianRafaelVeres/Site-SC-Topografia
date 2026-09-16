@@ -1,0 +1,67 @@
+---
+import { ChevronDown } from 'lucide-astro';
+
+const faqs = [
+  {
+    q: 'Preciso pagar o plantio e a manutenção?',
+    a: 'No modelo apresentado, os custos florestais previstos de implantação e manejo são assumidos pela empresa. As condições completas são apresentadas antes da contratação.',
+  },
+  {
+    q: 'Toda propriedade pode entrar?',
+    a: 'Não. A área precisa passar por avaliação técnica. Relevo, acesso, mecanização e outras características interferem na viabilidade.',
+  },
+  {
+    q: 'O projeto sempre dura 15 anos?',
+    a: 'Não. Os 15 anos apresentados no simulador são apenas um exemplo utilizado para demonstrar a lógica econômica. O projeto real é definido na proposta.',
+  },
+  {
+    q: 'Quando começa a remuneração anual?',
+    a: 'O cronograma de pagamentos é definido na proposta individual e formalizado no contrato. O simulador não determina a data de início dos pagamentos.',
+  },
+  {
+    q: 'O que significam 70/30, 60/40 e 50/50?',
+    a: 'Representam, no exemplo, a participação da empresa e do proprietário no valor considerado da madeira. Quanto maior a participação da empresa, maior é a remuneração anual do proprietário no modelo. Quanto maior a participação do proprietário, maior é sua participação no valor da madeira.',
+  },
+  {
+    q: 'É participação no lucro?',
+    a: 'Não. A simulação utiliza uma participação sobre o valor estimado da madeira em pé considerado ao final do projeto. Ela não representa participação em lucro líquido.',
+  },
+  {
+    q: 'O valor mostrado no simulador é garantido?',
+    a: 'Não. Trata-se de uma simulação ilustrativa. Preços de madeira, produtividade, prazo, características da área e outras condições podem alterar os valores reais.',
+  },
+  {
+    q: 'Como funciona o corte ao final?',
+    a: 'As condições de corte e retirada são definidas na proposta e no contrato. No modelo inicial, cada parte responde pela operação correspondente à sua participação, podendo existir negociação específica para que a empresa assuma outros serviços.',
+  },
+];
+---
+
+<section id="perguntas" class="scroll-mt-24 py-20 lg:py-28 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="text-xs font-bold uppercase tracking-wider text-brand-primary mb-3">Perguntas frequentes</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-heading tracking-tight leading-tight">
+        Dúvidas sobre a Parceria Florestal SC
+      </h2>
+    </div>
+
+    <div class="space-y-3">
+      {faqs.map(({ q, a }) => (
+        <details class="group rounded-2xl border border-gray-200/90 bg-brand-lightBg open:bg-white open:border-emerald-200 open:shadow-sm transition-colors motion-reduce:transition-none">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-5 text-base font-bold text-slate-heading rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-primary [&::-webkit-details-marker]:hidden">
+            <span>{q}</span>
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center">
+              <ChevronDown class="w-4 h-4 text-brand-primary transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
+            </span>
+          </summary>
+          <p class="px-5 sm:px-6 pb-6 -mt-1 text-sm sm:text-base text-slate-body leading-relaxed">{a}</p>
+        </details>
+      ))}
+    </div>
+
+    <p class="mt-12 pt-6 border-t border-gray-200 text-xs text-slate-muted text-center leading-relaxed">
+      “Parceria Florestal SC” é uma denominação comercial. As condições da relação entre as partes serão definidas em proposta e contrato próprios.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+---
+import { Check, ShieldCheck } from 'lucide-astro';
+
+const items = [
+  'Planejamento da implantação',
+  'Preparo previsto no projeto',
+  'Mudas',
+  'Plantio',
+  'Replantio',
+  'Controle de formigas',
+  'Manutenção',
+  'Manejo',
+  'Roçadas',
+  'Podas',
+  'Desbastes',
+];
+---
+
+<section class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <div class="lg:col-span-5 relative">
+        <div class="rounded-3xl overflow-hidden shadow-xl aspect-[4/3] lg:aspect-[4/5]">
+          <img
+            src="/images/corte-florestal.webp"
+            alt="Mãos segurando uma pequena muda com terra, simbolizando o plantio"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div class="absolute -bottom-5 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-xs bg-brand-dark text-white rounded-2xl p-5 shadow-xl border border-emerald-500/20">
+          <p class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-300 mb-1">
+            <ShieldCheck class="w-4 h-4" aria-hidden="true" />
+            Manejo florestal
+          </p>
+          <p class="text-sm text-gray-200 leading-relaxed">Da muda aos desbastes, a operação prevista no projeto é conduzida pela empresa.</p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 pt-6 lg:pt-0">
+        <p class="text-xs font-bold uppercase tracking-wider text-brand-primary mb-3">O que fica por conta da SC Topografia</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-heading tracking-tight leading-tight mb-5">
+          O trabalho florestal não precisa ficar nas suas mãos.
+        </h2>
+        <p class="text-base sm:text-lg text-slate-body leading-relaxed mb-8">
+          Implantar uma floresta de Pinus exige planejamento, equipe e acompanhamento por muitos anos. Na parceria, essa rotina fica com quem já trabalha com isso.
+        </p>
+
+        <ul class="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-3 mb-8">
+          {items.map((item) => (
+            <li class="flex items-center gap-2.5 text-sm sm:text-base font-semibold text-slate-heading">
+              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-primary text-white flex items-center justify-center">
+                <Check class="w-3.5 h-3.5" stroke-width="3" aria-hidden="true" />
+              </span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <p class="rounded-2xl bg-emerald-50 border border-emerald-100 px-5 py-4 text-sm sm:text-base text-slate-heading leading-relaxed">
+          No modelo apresentado, esses <strong>custos florestais de implantação e manejo</strong> são assumidos pela empresa, não pelo proprietário.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

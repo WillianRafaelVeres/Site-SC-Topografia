@@ -1,0 +1,60 @@
+---
+import { ScanSearch, Handshake, Sprout, TreePine } from 'lucide-astro';
+
+const steps = [
+  {
+    icon: ScanSearch,
+    title: 'Avaliamos a propriedade',
+    text: 'Analisamos área, acesso, relevo, possibilidade de mecanização e condições operacionais.',
+  },
+  {
+    icon: Handshake,
+    title: 'Apresentamos uma proposta',
+    text: 'Cada propriedade recebe uma análise própria. Prazo, modelo econômico e condições são definidos antes da contratação.',
+  },
+  {
+    icon: Sprout,
+    title: 'Implantamos e manejamos',
+    text: 'A empresa assume os custos florestais previstos de implantação e manejo, incluindo plantio, manutenção, podas e desbastes.',
+  },
+  {
+    icon: TreePine,
+    title: 'O proprietário participa do resultado',
+    text: 'Conforme o modelo escolhido, o proprietário recebe a remuneração prevista durante o projeto e mantém participação no valor da madeira.',
+  },
+];
+---
+
+<section id="como-funciona" class="scroll-mt-24 py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-14">
+      <p class="text-xs font-bold uppercase tracking-wider text-brand-primary mb-3">Como funciona</p>
+      <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-slate-heading tracking-tight leading-tight mb-5">
+        Você tem a terra. Nós cuidamos da floresta.
+      </h2>
+      <p class="text-base sm:text-lg text-slate-body leading-relaxed">
+        A Parceria Florestal SC foi pensada para proprietários que possuem uma área com potencial produtivo, mas não querem assumir sozinhos o investimento, a implantação e o manejo de uma floresta de Pinus.
+      </p>
+    </div>
+
+    <ol class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+      <!-- Linha de conexão (desktop) -->
+      <div class="hidden lg:block absolute top-7 left-[12%] right-[12%] h-px bg-gradient-to-r from-emerald-100 via-emerald-300 to-emerald-100" aria-hidden="true"></div>
+
+      {steps.map(({ icon: Icon, title, text }, index) => (
+        <li class="relative flex gap-4 lg:flex-col lg:gap-0 bg-white lg:bg-transparent rounded-3xl border border-gray-200/80 lg:border-0 p-5 lg:p-0">
+          <div class="flex-shrink-0 flex flex-col items-center lg:items-start">
+            <span class="relative z-10 w-14 h-14 rounded-2xl bg-brand-dark text-emerald-300 flex items-center justify-center shadow-md ring-8 ring-white">
+              <Icon class="w-6 h-6" aria-hidden="true" />
+            </span>
+          </div>
+          <div class="lg:mt-6 lg:pr-4">
+            <p class="text-xs font-bold text-brand-primary uppercase tracking-wider mb-1.5">Etapa {index + 1}</p>
+            <h3 class="text-lg font-bold text-slate-heading leading-snug mb-2">{title}</h3>
+            <p class="text-sm text-slate-body leading-relaxed">{text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

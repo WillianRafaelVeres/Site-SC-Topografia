@@ -1,0 +1,78 @@
+---
+import { Axe, Truck, CheckCircle2, ArrowRight } from 'lucide-astro';
+import { whatsappLink } from '../../data/parceriaFlorestal';
+
+const services = [
+  {
+    icon: Truck,
+    title: 'Venda de Madeira em Tora',
+    image: '/images/madeira-tora.webp',
+    alt: 'Pilhas de toras de Pinus ao lado de estrada florestal',
+    text: 'Lotes de madeira própria de Pinus em tora, com padrão de diâmetro e comprimento para serrarias, desdobro, indústria moveleira e laminação do Planalto Norte.',
+    points: ['Toras para serraria e desdobro', 'Seleção para indústria moveleira e laminação', 'Compromisso com volumes e prazos combinados'],
+    cta: 'Consultar disponibilidade',
+    link: whatsappLink('Olá! Gostaria de consultar a disponibilidade de lotes de madeira em tora.'),
+  },
+  {
+    icon: Axe,
+    title: 'Gestão Técnica de Corte Florestal',
+    image: '/images/topografia-field.webp',
+    alt: 'Agrimensor com receptor GNSS em área rural com floresta de Pinus ao fundo',
+    text: 'Planejamento, supervisão e gestão técnica de colheitas florestais terceirizadas, unindo a agrimensura à operação de campo com segurança e aproveitamento da floresta.',
+    points: [
+      'Planejamento do talhão e das divisas',
+      'Agrimensura aplicada à operação',
+      'Traçado de estradas de escoamento',
+      'Cubagem técnica do volume',
+      'Apoio operacional: abate, baldeio e pátio',
+    ],
+    cta: 'Conhecer gestão de corte',
+    link: whatsappLink('Olá! Gostaria de conhecer o serviço de Gestão Técnica de Corte Florestal.'),
+  },
+];
+---
+
+<section id="outros-servicos" class="scroll-mt-24 py-16 lg:py-20 bg-brand-lightBg border-t border-gray-200/80">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mb-8">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-heading tracking-tight mb-3">Outros serviços florestais</h2>
+      <p class="text-sm sm:text-base text-slate-body leading-relaxed">
+        Além da parceria, a SC Topografia atende indústrias, serrarias e empresas florestais da região.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {services.map(({ icon: Icon, title, image, alt, text, points, cta, link }) => (
+        <article class="bg-white rounded-3xl border border-gray-200/80 overflow-hidden flex flex-col">
+          <div class="h-36 sm:h-40 overflow-hidden">
+            <img src={image} alt={alt} class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="flex items-center gap-2.5 text-lg font-bold text-slate-heading mb-2">
+              <Icon class="w-5 h-5 text-brand-primary flex-shrink-0" aria-hidden="true" />
+              {title}
+            </h3>
+            <p class="text-sm text-slate-body leading-relaxed mb-4">{text}</p>
+            <ul class="space-y-2 mb-6">
+              {points.map((point) => (
+                <li class="flex items-start gap-2 text-sm text-slate-heading">
+                  <CheckCircle2 class="w-4 h-4 text-brand-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-auto inline-flex items-center justify-center gap-2 min-h-[48px] px-5 py-3 rounded-full border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white font-bold text-sm transition-colors self-start focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+            >
+              <span>{cta}</span>
+              <ArrowRight class="w-4 h-4" aria-hidden="true" />
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

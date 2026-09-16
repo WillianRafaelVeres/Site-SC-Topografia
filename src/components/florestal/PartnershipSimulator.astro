@@ -1,0 +1,314 @@
+---
+import { TriangleAlert, Minus, Plus, CalendarClock, Scale, TreePine, Wheat, ChevronDown, ArrowRight } from 'lucide-astro';
+import {
+  partnershipExample,
+  calculatePartnership,
+  formatBRL,
+  formatNumber,
+  formatSignedBRL,
+} from '../../data/parceriaFlorestal';
+
+const { defaultArea, years } = partnershipExample;
+const initial = calculatePartnership(defaultArea);
+
+const icons: Record<string, any> = { '70-30': CalendarClock, '60-40': Scale, '50-50': TreePine };
+const presets = [5, 10, 25, 50, 100];
+
+---
+
+<section id="simulador" class="scroll-mt-24 py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-8">
+      <p class="text-xs font-bold uppercase tracking-wider text-brand-primary mb-3">Exemplo ilustrativo</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-heading tracking-tight leading-tight mb-5 text-balance">
+        Veja um exemplo de como a parceria pode se comportar
+      </h2>
+    </div>
+
+    <div class="rounded-2xl border-2 border-amber-400 bg-amber-50 px-5 py-4 sm:px-6 mb-8 flex gap-3 sm:gap-4">
+      <TriangleAlert class="w-6 h-6 text-amber-700 flex-shrink-0 mt-0.5" aria-hidden="true" />
+      <div>
+        <p class="text-sm sm:text-base font-extrabold text-amber-900 uppercase tracking-wide mb-1">
+          Simulação ilustrativa — não é uma proposta comercial.
+        </p>
+        <p class="text-sm text-amber-950/80 leading-relaxed">
+          Este exemplo considera uma área com excelente aptidão operacional, mecanizável e comparável a uma boa terra de lavoura. Condições reais variam conforme localização, relevo, acesso, produtividade, prazo, mercado e características da propriedade.
+        </p>
+      </div>
+    </div>
+
+    <div data-simulator class="rounded-[2rem] bg-brand-lightBg border border-gray-200/80 p-2.5 sm:p-6 lg:p-8">
+      <!-- Controles -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 mb-6">
+        <div class="lg:col-span-7 bg-brand-dark text-white rounded-3xl p-4 sm:p-7">
+          <label for="sim-area" class="block text-sm font-bold text-emerald-200 mb-3">Área da propriedade</label>
+          <div class="flex items-stretch gap-2 sm:gap-3">
+            <button
+              type="button"
+              data-step="-1"
+              class="flex-shrink-0 w-11 sm:w-14 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-300"
+              aria-label="Diminuir área em 1 hectare"
+            >
+              <Minus class="w-5 h-5" aria-hidden="true" />
+            </button>
+            <div class="relative flex-grow min-w-0">
+              <input
+                id="sim-area"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+                value={formatNumber(defaultArea)}
+                aria-describedby="sim-area-help sim-area-error"
+                class="w-full h-14 sm:h-16 rounded-2xl bg-white text-slate-heading text-2xl sm:text-3xl font-extrabold tabular-nums pl-4 pr-12 sm:pr-28 border-2 border-transparent focus:border-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-400/30"
+              />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm sm:text-base font-semibold text-slate-muted pointer-events-none"><span class="sm:hidden">ha</span><span class="hidden sm:inline">hectares</span></span>
+            </div>
+            <button
+              type="button"
+              data-step="1"
+              class="flex-shrink-0 w-11 sm:w-14 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-300"
+              aria-label="Aumentar área em 1 hectare"
+            >
+              <Plus class="w-5 h-5" aria-hidden="true" />
+            </button>
+          </div>
+          <p id="sim-area-error" class="hidden mt-2 text-sm font-semibold text-amber-300" role="alert"></p>
+          <div class="mt-4 flex flex-wrap items-center gap-2">
+            <span id="sim-area-help" class="text-xs text-gray-300 mr-1">Atalhos:</span>
+            {presets.map((value) => (
+              <button
+                type="button"
+                data-preset={value}
+                aria-pressed={value === defaultArea ? 'true' : 'false'}
+                class="min-h-[40px] px-4 rounded-full text-sm font-bold border transition-colors border-white/20 bg-white/5 text-white hover:bg-white/15 aria-pressed:bg-white aria-pressed:text-brand-dark aria-pressed:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-300"
+              >
+                {value} ha
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-white rounded-3xl border border-gray-200/80 p-4 sm:p-7 flex flex-col justify-center">
+          <p class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800 mb-3">
+            <Wheat class="w-4 h-4" aria-hidden="true" />
+            Referência de arrendamento agrícola
+          </p>
+          <div class="flex flex-wrap gap-x-8 gap-y-3">
+            <div>
+              <p class="text-xs text-slate-muted font-medium mb-1">Por ano</p>
+              <p class="text-lg sm:text-xl font-extrabold text-slate-heading tabular-nums" data-out="soyAnnualReference">{formatBRL(initial.soyAnnualReference)}</p>
+            </div>
+            <div>
+              <p class="text-xs text-slate-muted font-medium mb-1">Em {years} anos</p>
+              <p class="text-lg sm:text-xl font-extrabold text-slate-heading tabular-nums" data-out="soyPeriodReference">{formatBRL(initial.soyPeriodReference)}</p>
+            </div>
+          </div>
+          <p class="mt-3 text-xs text-slate-muted leading-relaxed">Referência baseada em arrendamento para soja, usada apenas como comparativo agrícola do exemplo.</p>
+        </div>
+      </div>
+
+      <p class="text-sm text-slate-body font-medium mb-4 px-1.5 sm:px-0">
+        Exemplo ilustrativo de {years} anos para <strong class="text-slate-heading" data-out="areaLabel">{formatNumber(defaultArea)} ha</strong>
+      </p>
+
+      <!-- Resultados por modelo -->
+      <div data-results class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5 transition-opacity motion-reduce:transition-none">
+        {initial.scenarios.map((result) => {
+          const { scenario } = result;
+          const Icon = icons[scenario.id];
+          const companyPct = Math.round(scenario.company * 100);
+          const ownerPct = Math.round(scenario.owner * 100);
+          const isBalance = scenario.id === '60-40';
+          return (
+            <article
+              data-scenario={scenario.id}
+              class={`bg-white rounded-3xl p-4 sm:p-6 flex flex-col border ${isBalance ? 'border-brand-primary ring-1 ring-brand-primary/30 shadow-lg' : 'border-gray-200/80 shadow-sm'}`}
+            >
+              <header class="mb-5">
+                <div class="flex items-baseline justify-between gap-3">
+                  <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-heading tabular-nums tracking-tight">{companyPct} / {ownerPct}</h3>
+                  <span class={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold ${isBalance ? 'bg-brand-primary text-white' : 'bg-emerald-50 text-brand-primary'}`}>
+                    <Icon class="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+                    {scenario.profile}
+                  </span>
+                </div>
+                <p class="text-xs text-slate-muted font-medium mt-1">Empresa {companyPct}% · Proprietário {ownerPct}%</p>
+              </header>
+
+              <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                <div class="rounded-2xl bg-amber-50/70 border border-amber-100 p-4">
+                  <dt class="text-xs font-bold text-amber-900 mb-1">Renda anual no exemplo</dt>
+                  <dd>
+                    <span class="block text-xl sm:text-2xl lg:text-xl xl:text-2xl font-extrabold text-slate-heading tabular-nums whitespace-nowrap" data-out="annualPayment">{formatBRL(result.annualPayment)}</span>
+                    <span class="block text-xs text-slate-body mt-1"><span data-out="periodicPayments" class="font-semibold tabular-nums">{formatBRL(result.periodicPayments)}</span> ao longo de {years} anos</span>
+                  </dd>
+                </div>
+                <div class="rounded-2xl bg-emerald-50/80 border border-emerald-100 p-4">
+                  <dt class="text-xs font-bold text-brand-primary mb-1">Participação na madeira ao final</dt>
+                  <dd>
+                    <span class="block text-xl sm:text-2xl lg:text-xl xl:text-2xl font-extrabold text-slate-heading tabular-nums whitespace-nowrap" data-out="ownerWoodValue">{formatBRL(result.ownerWoodValue)}</span>
+                    <span class="block text-xs text-slate-body mt-1">{ownerPct}% do valor estimado da madeira em pé</span>
+                  </dd>
+                </div>
+              </dl>
+
+              <div class="mt-5 pt-5 border-t border-gray-100 flex-grow flex flex-col">
+                <p class="text-xs font-semibold text-slate-muted mb-1">Total ilustrativo no período</p>
+                <p class="text-lg sm:text-xl font-extrabold text-slate-heading tabular-nums" data-out="ownerTotal">{formatBRL(result.ownerTotal)}</p>
+                <p class="text-xs text-slate-muted mt-0.5">Renda ao longo do projeto + participação final</p>
+
+                <div class="mt-auto pt-4">
+                  <p class="rounded-xl bg-brand-lightBg px-3.5 py-2.5 text-xs text-slate-body leading-relaxed">
+                    Comparado à referência agrícola:
+                    <strong class="block text-sm text-brand-primary tabular-nums" data-out="difference">{formatSignedBRL(result.differenceVsAgriculturalReference)}</strong>
+                  </p>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <p class="sr-only" aria-live="polite" data-out="liveSummary"></p>
+
+      <div class="mt-4 sm:mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-3xl bg-white border border-gray-200/80 p-4 sm:p-5 sm:px-7">
+        <p class="text-sm sm:text-base text-slate-heading font-semibold">Os números reais dependem da sua área. O próximo passo é uma avaliação.</p>
+        <a
+          href="#avaliacao"
+          data-sim-cta
+          class="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-full bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-sm transition-colors flex-shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+        >
+          <span>Avaliar minha propriedade</span>
+          <ArrowRight class="w-4 h-4" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+
+    <p class="mt-6 text-sm text-slate-body leading-relaxed max-w-4xl">
+      Esta simulação é apenas ilustrativa e não constitui proposta, promessa ou garantia de resultado. A viabilidade e as condições da Parceria Florestal SC dependem de avaliação técnica da propriedade e de proposta específica.
+    </p>
+
+    <details class="group mt-4 max-w-4xl rounded-2xl border border-gray-200/80 bg-white">
+      <summary class="flex items-center justify-between gap-3 cursor-pointer list-none px-5 py-4 text-sm font-bold text-slate-heading rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-primary [&::-webkit-details-marker]:hidden">
+        Entenda as premissas deste exemplo
+        <ChevronDown class="w-4 h-4 text-slate-muted transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
+      </summary>
+      <ul class="px-5 pb-5 space-y-2 text-sm text-slate-body leading-relaxed list-disc pl-10">
+        <li>O exemplo considera {formatNumber(defaultArea)} ha por padrão; você pode alterar apenas a área.</li>
+        <li>O horizonte de {years} anos é ilustrativo e não representa o prazo de um contrato.</li>
+        <li>A área simulada tem excelente aptidão operacional: mecanizável e comparável a uma boa terra de lavoura.</li>
+        <li>A referência de arrendamento agrícola é usada apenas para comparação e não é uma estatística oficial de mercado.</li>
+        <li>Preços da madeira e produtividade da floresta são hipóteses de simulação.</li>
+        <li>A participação na madeira considera o valor estimado da madeira em pé, sem descontar corte ou retirada.</li>
+        <li>Valores futuros podem variar, e a simulação não representa garantia de resultado.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<script>
+  import { partnershipExample, calculatePartnership, formatBRL, formatNumber, formatSignedBRL } from '../../data/parceriaFlorestal';
+
+  const root = document.querySelector<HTMLElement>('[data-simulator]');
+  const input = document.getElementById('sim-area') as HTMLInputElement | null;
+  const errorEl = document.getElementById('sim-area-error');
+
+  if (root && input && errorEl) {
+    const { minArea, maxArea, defaultArea, years } = partnershipExample;
+    let currentArea = defaultArea;
+    let liveTimer: number | undefined;
+
+    const out = (scope: ParentNode, key: string) => scope.querySelector<HTMLElement>(`[data-out="${key}"]`);
+
+    /** Aceita "10", "10,5", "2.5" e "1.000" (milhar pt-BR). */
+    const parseArea = (raw: string) => {
+      let value = raw.trim().replace(/\s|ha$/gi, '');
+      if (value.includes(',')) value = value.replace(/\./g, '').replace(',', '.');
+      else if (/^\d{1,3}(\.\d{3})+$/.test(value)) value = value.replace(/\./g, '');
+      return value === '' ? NaN : Number(value);
+    };
+
+    const render = (area: number) => {
+      currentArea = area;
+      const result = calculatePartnership(area);
+
+      out(root, 'soyAnnualReference')!.textContent = formatBRL(result.soyAnnualReference);
+      out(root, 'soyPeriodReference')!.textContent = formatBRL(result.soyPeriodReference);
+      out(root, 'areaLabel')!.textContent = `${formatNumber(area)} ha`;
+
+      result.scenarios.forEach((item) => {
+        const card = root.querySelector<HTMLElement>(`[data-scenario="${item.scenario.id}"]`);
+        if (!card) return;
+        out(card, 'annualPayment')!.textContent = formatBRL(item.annualPayment);
+        out(card, 'periodicPayments')!.textContent = formatBRL(item.periodicPayments);
+        out(card, 'ownerWoodValue')!.textContent = formatBRL(item.ownerWoodValue);
+        out(card, 'ownerTotal')!.textContent = formatBRL(item.ownerTotal);
+        out(card, 'difference')!.textContent = formatSignedBRL(item.differenceVsAgriculturalReference);
+      });
+
+      root.querySelectorAll<HTMLButtonElement>('[data-preset]').forEach((btn) => {
+        btn.setAttribute('aria-pressed', Number(btn.dataset.preset) === area ? 'true' : 'false');
+      });
+
+      window.clearTimeout(liveTimer);
+      liveTimer = window.setTimeout(() => {
+        const summary = result.scenarios
+          .map((s) => `${Math.round(s.scenario.company * 100)}/${Math.round(s.scenario.owner * 100)}: renda anual ${formatBRL(s.annualPayment)}, participação na madeira ${formatBRL(s.ownerWoodValue)}`)
+          .join('; ');
+        out(root, 'liveSummary')!.textContent = `Exemplo de ${years} anos atualizado para ${formatNumber(area)} hectares. ${summary}.`;
+      }, 700);
+    };
+
+    const showError = (message: string) => {
+      errorEl.textContent = message;
+      errorEl.classList.toggle('hidden', !message);
+      input.setAttribute('aria-invalid', message ? 'true' : 'false');
+      root.querySelector('[data-results]')?.classList.toggle('opacity-40', Boolean(message));
+    };
+
+    const handleInput = () => {
+      const area = parseArea(input.value);
+      if (!Number.isFinite(area) || area < minArea) {
+        showError(`Informe uma área a partir de ${formatNumber(minArea)} hectare.`);
+        return;
+      }
+      if (area > maxArea) {
+        showError(`Para áreas acima de ${formatNumber(maxArea)} ha, solicite uma avaliação.`);
+        return;
+      }
+      showError('');
+      render(area);
+    };
+
+    const setArea = (area: number) => {
+      const clamped = Math.min(maxArea, Math.max(minArea, Math.round(area * 100) / 100));
+      input.value = formatNumber(clamped);
+      showError('');
+      render(clamped);
+    };
+
+    input.addEventListener('input', handleInput);
+    input.addEventListener('blur', () => {
+      if (!errorEl.classList.contains('hidden')) return;
+      input.value = formatNumber(currentArea);
+    });
+
+    root.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const step = Number(btn.dataset.step);
+        const base = Math.floor(currentArea);
+        setArea(step > 0 ? base + 1 : Math.max(1, Math.ceil(currentArea) - 1));
+      });
+    });
+
+    root.querySelectorAll<HTMLButtonElement>('[data-preset]').forEach((btn) => {
+      btn.addEventListener('click', () => setArea(Number(btn.dataset.preset)));
+    });
+
+    // Leva a área simulada para o formulário de avaliação, se ainda estiver vazio.
+    root.querySelector('[data-sim-cta]')?.addEventListener('click', () => {
+      const formArea = document.getElementById('aval-area') as HTMLInputElement | null;
+      if (formArea && !formArea.value) formArea.value = formatNumber(currentArea);
+    });
+  }
+</script>

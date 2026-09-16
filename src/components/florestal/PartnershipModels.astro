@@ -1,0 +1,119 @@
+---
+import { CalendarClock, Scale, TreePine, ArrowLeft, ArrowRight, Info } from 'lucide-astro';
+import { partnershipExample } from '../../data/parceriaFlorestal';
+
+const content: Record<string, { icon: any; text: string; income: string; wood: string }> = {
+  '70-30': {
+    icon: CalendarClock,
+    text: 'A empresa fica com 70% do valor considerado da madeira e o proprietário com 30%. Em contrapartida, este é o modelo com maior remuneração anual entre os três exemplos.',
+    income: 'Maior',
+    wood: '30%',
+  },
+  '60-40': {
+    icon: Scale,
+    text: 'Reduz a remuneração anual em relação ao modelo 70/30, mas aumenta a participação do proprietário no valor da madeira para 40%.',
+    income: 'Intermediária',
+    wood: '40%',
+  },
+  '50-50': {
+    icon: TreePine,
+    text: 'Possui a menor remuneração anual entre os três exemplos, mas aumenta para 50% a participação do proprietário no valor considerado da madeira.',
+    income: 'Menor',
+    wood: '50%',
+  },
+};
+
+// Barras proporcionais derivadas das próprias premissas (sem expor fórmula na tela).
+const maxIncome = Math.max(...partnershipExample.scenarios.map((s) => s.company * s.company));
+const maxWood = Math.max(...partnershipExample.scenarios.map((s) => s.owner));
+
+const models = partnershipExample.scenarios.map((scenario) => ({
+  ...scenario,
+  ...content[scenario.id],
+  incomeWidth: Math.round(((scenario.company * scenario.company) / maxIncome) * 100),
+  woodWidth: Math.round((scenario.owner / maxWood) * 100),
+  label: `${Math.round(scenario.company * 100)} / ${Math.round(scenario.owner * 100)}`,
+}));
+---
+
+<section id="modelos" class="scroll-mt-24 py-20 lg:py-28 bg-brand-lightBg border-y border-gray-200/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <p class="text-xs font-bold uppercase tracking-wider text-brand-primary mb-3">Modelos de parceria</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-heading tracking-tight leading-tight mb-5 text-balance">
+        Você escolhe o equilíbrio entre renda ao longo do projeto e participação na madeira.
+      </h2>
+      <p class="text-base sm:text-lg text-slate-body leading-relaxed">
+        Na simulação, os modelos mudam a forma como o valor é distribuído entre os pagamentos ao longo do projeto e a participação no valor da madeira ao final.
+      </p>
+    </div>
+
+    <!-- Espectro -->
+    <div class="bg-white rounded-3xl border border-gray-200/80 p-5 sm:p-8 mb-6" role="img" aria-label="Espectro dos modelos: 70/30 com maior renda anual, 60/40 no equilíbrio e 50/50 com maior participação na madeira">
+      <div class="flex justify-between gap-4 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-4">
+        <span class="flex items-center gap-1.5 text-amber-800"><ArrowLeft class="w-4 h-4 flex-shrink-0" aria-hidden="true" />Maior renda anual</span>
+        <span class="flex items-center gap-1.5 text-brand-primary text-right">Maior participação na madeira<ArrowRight class="w-4 h-4 flex-shrink-0" aria-hidden="true" /></span>
+      </div>
+      <div class="relative h-2 rounded-full bg-gradient-to-r from-amber-300 via-lime-300 to-emerald-500 mx-3 sm:mx-6">
+        {models.map((model, index) => (
+          <span
+            class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-white border-4 border-brand-dark shadow"
+            style={`left:${index * 50}%`}
+            aria-hidden="true"
+          ></span>
+        ))}
+      </div>
+      <div class="relative mt-4 h-6 mx-3 sm:mx-6" aria-hidden="true">
+        {models.map((model, index) => (
+          <span
+            class={`absolute top-0 text-sm sm:text-base font-extrabold text-slate-heading whitespace-nowrap ${index === 0 ? 'left-0 -translate-x-3 sm:-translate-x-1/2' : index === 2 ? 'right-0 translate-x-3 sm:translate-x-1/2' : 'left-1/2 -translate-x-1/2'}`}
+          >{model.label}</span>
+        ))}
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {models.map(({ icon: Icon, label, profile, text, income, wood, incomeWidth, woodWidth, id }) => (
+        <article class={`relative bg-white rounded-3xl p-6 sm:p-7 border flex flex-col ${id === '60-40' ? 'border-brand-primary/50 shadow-md' : 'border-gray-200/80 shadow-sm'}`}>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div>
+              <p class="text-3xl font-extrabold text-slate-heading tracking-tight tabular-nums">{label}</p>
+              <p class="text-xs text-slate-muted font-medium mt-1">empresa / proprietário</p>
+            </div>
+            <span class="flex-shrink-0 w-11 h-11 rounded-2xl bg-emerald-50 text-brand-primary flex items-center justify-center">
+              <Icon class="w-5 h-5" aria-hidden="true" />
+            </span>
+          </div>
+          <p class="inline-flex self-start px-3 py-1 rounded-full bg-brand-dark text-white text-xs font-bold mb-4">{profile}</p>
+          <p class="text-sm text-slate-body leading-relaxed mb-6 flex-grow">{text}</p>
+
+          <dl class="space-y-3 pt-5 border-t border-gray-100">
+            <div>
+              <div class="flex justify-between text-xs font-semibold mb-1.5">
+                <dt class="text-slate-body">Renda anual</dt>
+                <dd class="text-slate-heading">{income}</dd>
+              </div>
+              <div class="h-1.5 rounded-full bg-gray-100 overflow-hidden" aria-hidden="true">
+                <div class="h-full rounded-full bg-amber-500" style={`width:${incomeWidth}%`}></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-semibold mb-1.5">
+                <dt class="text-slate-body">Participação na madeira</dt>
+                <dd class="text-slate-heading">{wood}</dd>
+              </div>
+              <div class="h-1.5 rounded-full bg-gray-100 overflow-hidden" aria-hidden="true">
+                <div class="h-full rounded-full bg-brand-primary" style={`width:${woodWidth}%`}></div>
+              </div>
+            </div>
+          </dl>
+        </article>
+      ))}
+    </div>
+
+    <p class="mt-8 flex items-start gap-3 rounded-2xl bg-white border-l-4 border-amber-500 px-5 py-4 text-base font-semibold text-slate-heading leading-relaxed">
+      <Info class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+      <span>Não existe apenas uma pergunta de “qual paga mais”. Cada modelo distribui o valor de uma maneira diferente ao longo do tempo.</span>
+    </p>
+  </div>
+</section>
