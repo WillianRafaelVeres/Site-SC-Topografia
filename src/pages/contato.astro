@@ -208,9 +208,11 @@ import {
             </form>
 
             <script>
-              const form = document.getElementById('contact-form') as HTMLFormElement;
-              if (form) {
-                form.addEventListener('submit', (e) => {
+              const setupContactForm = () => {
+                const form = document.getElementById('contact-form') as HTMLFormElement | null;
+                if (form && !form.dataset.formReady) {
+                  form.dataset.formReady = 'true';
+                  form.addEventListener('submit', (e) => {
                   e.preventDefault();
                   const nome = (document.getElementById('nome') as HTMLInputElement).value;
                   const telefone = (document.getElementById('telefone') as HTMLInputElement).value;
@@ -221,8 +223,11 @@ import {
                   const text = `Olá, meu nome é ${nome} (${telefone}). Gostaria de um orçamento para ${servico} em ${cidade}. Detalhes: ${mensagem}`;
                   const url = `https://wa.me/5547984388016?text=${encodeURIComponent(text)}`;
                   window.open(url, '_blank');
-                });
-              }
+                  });
+                }
+              };
+
+              document.addEventListener('astro:page-load', setupContactForm);
             </script>
           </div>
         </div>

@@ -35,7 +35,8 @@ const whatsappHref = `https://wa.me/5547984388016?text=${encodeURIComponent(prim
 <div class="sticky top-3 sm:top-4 z-50 w-full px-3 sm:px-6 pointer-events-none flex justify-center">
   <header
     id="pill-navbar"
-    class="pointer-events-auto w-full max-w-7xl rounded-full transition-all duration-300 bg-white/90 backdrop-blur-md border border-white/40 shadow-lg px-4 sm:px-6 py-2.5 flex items-center justify-between"
+    class="site-navbar pointer-events-auto w-full max-w-7xl rounded-full bg-white/90 backdrop-blur-md border border-white/40 shadow-lg px-4 sm:px-6 py-2.5 flex items-center justify-between"
+    style="view-transition-name: site-navbar"
   >
     <a href="/" class="flex items-center gap-3 group py-1 flex-shrink-0" aria-label="SC Topografia — página inicial">
       <img
@@ -51,13 +52,16 @@ const whatsappHref = `https://wa.me/5547984388016?text=${encodeURIComponent(prim
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class={`nav-item px-2.5 xl:px-3 py-1.5 rounded-full text-[11px] xl:text-xs font-semibold transition-all duration-200 ${
+          class={`nav-item relative isolate px-2.5 xl:px-3 py-1.5 rounded-full text-[11px] xl:text-xs font-semibold transition-colors duration-200 ${
             isActive(link.href)
-              ? 'text-brand-primary bg-emerald-100/70 font-bold'
+              ? 'text-brand-primary font-bold'
               : 'text-slate-heading hover:text-brand-primary hover:bg-black/5'
           }`}
         >
-          {link.name}
+          {isActive(link.href) && (
+            <span transition:name="nav-active" class="absolute inset-0 -z-10 rounded-full bg-emerald-100/70" aria-hidden="true"></span>
+          )}
+          <span>{link.name}</span>
         </a>
       ))}
     </nav>
@@ -136,23 +140,28 @@ const whatsappHref = `https://wa.me/5547984388016?text=${encodeURIComponent(prim
 </div>
 
 <script>
-  const nav = document.getElementById('pill-navbar');
-  const btn = document.getElementById('mobile-menu-button');
-  const menu = document.getElementById('mobile-menu');
-  const iconMenu = document.getElementById('icon-menu');
-  const iconClose = document.getElementById('icon-close');
+  let cleanupNavbar: (() => void) | undefined;
 
-  const closeMenu = () => {
-    if (!btn || !menu || !iconMenu || !iconClose) return;
-    menu.classList.add('hidden');
-    iconMenu.classList.remove('hidden');
-    iconClose.classList.add('hidden');
-    btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-label', 'Abrir menu de navegação');
-  };
+  const setupNavbar = () => {
+    cleanupNavbar?.();
 
-  if (btn && menu && iconMenu && iconClose) {
-    btn.addEventListener('click', () => {
+    const nav = document.getElementById('pill-navbar');
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+
+    if (!nav || !btn || !menu || !iconMenu || !iconClose) return;
+
+    const closeMenu = () => {
+      menu.classList.add('hidden');
+      iconMenu.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Abrir menu de navegação');
+    };
+
+    const toggleMenu = () => {
       const willOpen = menu.classList.contains('hidden');
       if (willOpen) {
         menu.classList.remove('hidden');
@@ -163,19 +172,71 @@ const whatsappHref = `https://wa.me/5547984388016?text=${encodeURIComponent(prim
       } else {
         closeMenu();
       }
-    });
+    };
 
+    const updateNavbar = () => {
+      nav.toggleAttribute('data-scrolled', window.scrollY > 36);
+    };
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeMenu();
+    };
+
+    const closeOnOutsideClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Node) || menu.classList.contains('hidden')) return;
+      if (!menu.contains(target) && !btn.contains(target)) closeMenu();
+    };
+
+    btn.addEventListener('click', toggleMenu);
     menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    document.addEventListener('keydown', closeOnEscape);
+    document.addEventListener('click', closeOnOutsideClick);
+    updateNavbar();
+
+    cleanupNavbar = () => {
+      btn.removeEventListener('click', toggleMenu);
+      window.removeEventListener('scroll', updateNavbar);
+      document.removeEventListener('keydown', closeOnEscape);
+      document.removeEventListener('click', closeOnOutsideClick);
+    };
+  };
+
+  document.addEventListener('astro:page-load', setupNavbar);
+</script>
+
+<style>
+  .site-navbar {
+    transition:
+      max-width 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      padding 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 260ms ease,
+      border-color 260ms ease,
+      box-shadow 260ms ease;
   }
 
-  window.addEventListener('scroll', () => {
-    if (!nav) return;
-    if (window.scrollY > 30) {
-      nav.classList.add('shadow-xl', 'bg-white/95', 'border-gray-200/90');
-      nav.classList.remove('bg-white/90', 'border-white/40');
-    } else {
-      nav.classList.remove('shadow-xl', 'bg-white/95', 'border-gray-200/90');
-      nav.classList.add('bg-white/90', 'border-white/40');
+  .site-navbar :global(#navbar-logo) {
+    transition: height 360ms cubic-bezier(0.22, 1, 0.36, 1), transform 220ms ease;
+  }
+
+  .site-navbar[data-scrolled] {
+    max-width: 72rem;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    background-color: rgb(255 255 255 / 0.96);
+    border-color: rgb(229 231 235 / 0.92);
+    box-shadow: 0 14px 35px -20px rgb(11 41 18 / 0.45);
+  }
+
+  .site-navbar[data-scrolled] :global(#navbar-logo) {
+    height: 2rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-navbar,
+    .site-navbar :global(#navbar-logo) {
+      transition: none;
     }
-  }, { passive: true });
-</script>
+  }
+</style>

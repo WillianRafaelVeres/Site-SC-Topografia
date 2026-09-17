@@ -311,20 +311,29 @@ const allReviews = [
 </section>
 
 <script>
-  const carousel = document.getElementById('reviews-carousel');
-  const prevBtn = document.getElementById('prev-review-btn');
-  const nextBtn = document.getElementById('next-review-btn');
+  let stopReviewsCarousel: (() => void) | undefined;
 
-  if (carousel && prevBtn && nextBtn) {
+  const setupReviewsCarousel = () => {
+    stopReviewsCarousel?.();
+
+    const carousel = document.getElementById('reviews-carousel');
+    const prevBtn = document.getElementById('prev-review-btn');
+    const nextBtn = document.getElementById('next-review-btn');
+
+    if (!carousel || !prevBtn || !nextBtn) return;
+
     const scrollAmount = 370;
 
-    prevBtn.addEventListener('click', () => {
+    const previous = () => {
       carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    });
+    };
 
-    nextBtn.addEventListener('click', () => {
+    const next = () => {
       carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    });
+    };
+
+    prevBtn.addEventListener('click', previous);
+    nextBtn.addEventListener('click', next);
 
     // Auto-scroll a cada 5 segundos com pausa ao passar o mouse ou tocar
     let autoScrollInterval = setInterval(() => {
@@ -335,8 +344,18 @@ const allReviews = [
       }
     }, 5000);
 
-    carousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
-    carousel.addEventListener('touchstart', () => clearInterval(autoScrollInterval));
-  }
-</script>
+    const pause = () => clearInterval(autoScrollInterval);
+    carousel.addEventListener('mouseenter', pause);
+    carousel.addEventListener('touchstart', pause, { passive: true });
 
+    stopReviewsCarousel = () => {
+      clearInterval(autoScrollInterval);
+      prevBtn.removeEventListener('click', previous);
+      nextBtn.removeEventListener('click', next);
+      carousel.removeEventListener('mouseenter', pause);
+      carousel.removeEventListener('touchstart', pause);
+    };
+  };
+
+  document.addEventListener('astro:page-load', setupReviewsCarousel);
+</script>

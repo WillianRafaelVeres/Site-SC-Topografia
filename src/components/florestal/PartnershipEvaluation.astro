@@ -90,10 +90,12 @@ const labelClass = 'block text-sm font-bold text-slate-heading mb-2';
 <script>
   import { whatsappLink } from '../../data/parceriaFlorestal';
 
-  const form = document.getElementById('evaluation-form') as HTMLFormElement | null;
-  const errorEl = document.getElementById('evaluation-error');
+  const setupEvaluationForm = () => {
+    const form = document.getElementById('evaluation-form') as HTMLFormElement | null;
+    const errorEl = document.getElementById('evaluation-error');
 
-  if (form && errorEl) {
+    if (form && errorEl && !form.dataset.formReady) {
+      form.dataset.formReady = 'true';
     const labels: Record<string, string> = {
       nome: 'Nome',
       municipio: 'Município da propriedade',
@@ -142,5 +144,8 @@ const labelClass = 'block text-sm font-bold text-slate-heading mb-2';
       const opened = window.open(url, '_blank', 'noopener');
       if (!opened) window.location.href = url;
     });
-  }
+    }
+  };
+
+  document.addEventListener('astro:page-load', setupEvaluationForm);
 </script>

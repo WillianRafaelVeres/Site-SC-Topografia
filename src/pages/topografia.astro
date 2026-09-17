@@ -135,7 +135,7 @@ const services = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
       
       {services.map((s, idx) => (
-        <div id={s.id} class="bg-white rounded-3xl overflow-hidden border border-gray-200/90 shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-0">
+        <div id={s.id} data-motion-card class="bg-white rounded-3xl overflow-hidden border border-gray-200/90 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-0">
           
           <!-- Imagem Lateral -->
           <div class={`lg:col-span-5 relative min-h-[280px] lg:min-h-full ${idx % 2 === 1 ? 'lg:order-last' : ''}`}>
@@ -223,7 +223,7 @@ const services = [
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-5xl mx-auto">
         <!-- GNSS RTK -->
-        <div class="p-6 rounded-3xl bg-brand-lightBg border border-gray-200/80 text-center">
+        <div data-motion-card class="p-6 rounded-3xl bg-brand-lightBg border border-gray-200/80 text-center">
           <div class="w-14 h-14 rounded-2xl bg-white border border-gray-200 text-brand-primary flex items-center justify-center mx-auto mb-4 shadow-xs">
             <Globe class="w-7 h-7" />
           </div>
@@ -232,7 +232,7 @@ const services = [
         </div>
 
         <!-- Estação Total -->
-        <div class="p-6 rounded-3xl bg-brand-lightBg border border-gray-200/80 text-center">
+        <div data-motion-card class="p-6 rounded-3xl bg-brand-lightBg border border-gray-200/80 text-center">
           <div class="w-14 h-14 rounded-2xl bg-white border border-gray-200 text-brand-primary flex items-center justify-center mx-auto mb-4 shadow-xs">
             <Ruler class="w-7 h-7" />
           </div>
@@ -241,7 +241,7 @@ const services = [
         </div>
 
         <!-- Softwares e Aprimoramento -->
-        <div class="p-6 rounded-3xl bg-brand-lightBg border border-gray-200/80 text-center">
+        <div data-motion-card class="p-6 rounded-3xl bg-brand-lightBg border border-gray-200/80 text-center">
           <div class="w-14 h-14 rounded-2xl bg-white border border-gray-200 text-brand-primary flex items-center justify-center mx-auto mb-4 shadow-xs">
             <Cpu class="w-7 h-7" />
           </div>
