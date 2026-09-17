@@ -28,11 +28,14 @@ const partners = [
     specialties: ['Gestão do Escritório', 'Relacionamento com o Produtor Rural', 'Demarcação de Divisas no Campo', 'Mediação de Confrontantes']
   }
 ];
+
+// Conteúdo preservado para reativação futura quando a apresentação dos sócios voltar ao site.
+const showLeadershipTeam = false;
 ---
 
 <Layout 
   title="Sobre Nós | SC Topografia e Planejamento - Rio Negrinho"
-  description="Mais de 20 anos de tradição técnica no campo. Conheça a história da SC Topografia e os sócios Solanjo Antonio Gertler e Clodoaldo Veres."
+  description="Mais de 20 anos de tradição técnica no campo. Conheça a história e a evolução da SC Topografia e Planejamento."
 >
   <!-- Hero da Página Sobre -->
   <section class="relative bg-brand-dark text-white py-20 lg:py-24 overflow-hidden -mt-16 sm:-mt-20 pt-24">
@@ -143,7 +146,8 @@ const partners = [
     </div>
   </section>
 
-  <!-- Apresentação dos Sócios (Solanjo e Clodoaldo - Sócios Iguais) -->
+  <!-- Apresentação dos sócios preservada para reativação futura -->
+  {showLeadershipTeam && (
   <section class="py-20 bg-brand-lightBg border-t border-gray-200/90">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -215,6 +219,7 @@ const partners = [
 
     </div>
   </section>
+  )}
 
   <!-- Banner CTA Final -->
   <section class="py-16 bg-brand-dark text-white text-center">
