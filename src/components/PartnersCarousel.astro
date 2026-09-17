@@ -23,12 +23,12 @@ const partners = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-3 sm:mb-4">
       <p class="text-xs uppercase tracking-widest text-slate-muted font-bold">
-        Empresas, indústrias e produtores que confiam em nosso trabalho
+        Empresas e proprietários atendidos pela SC Topografia
       </p>
     </div>
 
     <!-- Carrossel Marquee Infinito Suave das 16 Logos -->
-    <div class="relative w-full overflow-hidden mask-fade">
+    <div class="relative w-full overflow-hidden mask-fade" aria-label="Empresas atendidas">
       <div class="flex items-center gap-12 sm:gap-16 py-1 animate-marquee whitespace-nowrap">
         {/* Primeiro loop */}
         {partners.map((p) => (
@@ -78,6 +78,12 @@ const partners = [
 
   .animate-marquee:hover {
     animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+    }
   }
 
   /* Efeito de fade suave nas laterais */

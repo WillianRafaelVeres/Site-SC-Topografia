@@ -9,12 +9,12 @@ export default {
           primaryHover: '#155d27',  // Verde Hover para botões
           dark: '#0B2912',          // Verde Florestal Escuro (Top Bar e Rodapé)
           accent: '#28A745',        // Verde Vibrante para detalhes ativos
-          lightBg: '#F8FAF9',       // Fundo cinza/gelo leve para alternância de seções
+          lightBg: '#F5F3ED',       // Fundo mineral quente para alternância de seções
         },
         slate: {
           heading: '#1A202C',       // Títulos (quase preto, evita #000 puro)
           body: '#4A5568',          // Textos corridos e descrições
-          muted: '#718096',         // Textos secundários e legendas
+          muted: '#5F6B62',         // Textos secundários com contraste acessível
         }
       },
       fontFamily: {

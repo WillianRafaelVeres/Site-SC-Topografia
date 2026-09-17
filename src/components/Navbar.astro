@@ -5,43 +5,54 @@ const currentPath = Astro.url.pathname;
 
 const navLinks = [
   { name: 'Início', href: '/' },
-  { name: 'Topografia & Agrimensura', href: '/topografia' },
-  { name: 'Operações Florestais', href: '/florestal' },
+  { name: 'Parceria Florestal', href: '/florestal' },
+  { name: 'Topografia Rural', href: '/topografia' },
+  { name: 'Madeira & Corte', href: '/florestal#servicos-florestais' },
   { name: 'Sobre Nós', href: '/sobre' },
   { name: 'Contato', href: '/contato' },
 ];
 
 const isActive = (href: string) => {
-  if (href === '/') {
-    return currentPath === '/' || currentPath === '';
-  }
-  return currentPath.startsWith(href);
+  if (href === '/') return currentPath === '/' || currentPath === '';
+  if (href.includes('#')) return false;
+  return currentPath.startsWith(href.split('#')[0]);
 };
+
+const partnershipMessage = 'Olá! Gostaria de saber se minha propriedade tem potencial para uma parceria florestal.';
+const topographyMessage = 'Olá! Preciso conversar sobre topografia ou regularização de uma propriedade rural.';
+const generalMessage = 'Olá! Gostaria de conversar com a equipe da SC Topografia.';
+
+const isPartnershipPage = currentPath === '/' || currentPath.startsWith('/florestal');
+const isTopographyPage = currentPath.startsWith('/topografia');
+const primaryCta = isPartnershipPage
+  ? { desktop: 'Avaliar propriedade', mobile: 'Avaliar área', message: partnershipMessage }
+  : isTopographyPage
+    ? { desktop: 'Falar com a equipe técnica', mobile: 'Falar com técnico', message: topographyMessage }
+    : { desktop: 'Iniciar conversa', mobile: 'WhatsApp', message: generalMessage };
+
+const whatsappHref = `https://wa.me/5547984388016?text=${encodeURIComponent(primaryCta.message)}`;
 ---
 
-<!-- Contêiner fixo para manter a cápsula centralizada e com margens ao rolar -->
 <div class="sticky top-3 sm:top-4 z-50 w-full px-3 sm:px-6 pointer-events-none flex justify-center">
   <header
     id="pill-navbar"
-    class="pointer-events-auto w-full max-w-6xl rounded-full transition-all duration-300 bg-white/90 backdrop-blur-md border border-white/40 shadow-lg px-4 sm:px-6 py-2.5 flex items-center justify-between"
+    class="pointer-events-auto w-full max-w-7xl rounded-full transition-all duration-300 bg-white/90 backdrop-blur-md border border-white/40 shadow-lg px-4 sm:px-6 py-2.5 flex items-center justify-between"
   >
-    <!-- Logomarca Oficial Transparente (Sem fundo quadrado) -->
-    <a href="/" class="flex items-center gap-3 group py-1 flex-shrink-0">
-      <img 
+    <a href="/" class="flex items-center gap-3 group py-1 flex-shrink-0" aria-label="SC Topografia — página inicial">
+      <img
         id="navbar-logo"
-        src="/images/logo.png" 
-        alt="SC Topografia" 
+        src="/images/logo.png"
+        alt="SC Topografia"
         class="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
         loading="eager"
       />
     </a>
 
-    <!-- Menu Desktop Centralizado -->
-    <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+    <nav class="hidden lg:flex items-center gap-0.5 xl:gap-1" aria-label="Navegação principal">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class={`nav-item px-3.5 py-1.5 rounded-full text-xs xl:text-sm font-semibold transition-all duration-200 ${
+          class={`nav-item px-2.5 xl:px-3 py-1.5 rounded-full text-[11px] xl:text-xs font-semibold transition-all duration-200 ${
             isActive(link.href)
               ? 'text-brand-primary bg-emerald-100/70 font-bold'
               : 'text-slate-heading hover:text-brand-primary hover:bg-black/5'
@@ -52,30 +63,28 @@ const isActive = (href: string) => {
       ))}
     </nav>
 
-    <!-- Botão CTA WhatsApp Desktop -->
     <div class="hidden lg:flex items-center gap-2">
       <a
-        href="https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20meu%20im%C3%B3vel."
+        href={whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary hover:bg-brand-primaryHover text-white text-xs font-bold shadow-md hover:shadow-lg transition-all group"
       >
         <MessageSquare class="w-3.5 h-3.5 text-emerald-200 group-hover:rotate-12 transition-transform" />
-        <span>Orçamento Rápido</span>
+        <span>{primaryCta.desktop}</span>
         <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
       </a>
     </div>
 
-    <!-- Botões Mobile (Orçar + Hambúrguer) -->
     <div class="flex lg:hidden items-center gap-2">
       <a
-        href="https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20um%20or%C3%A7amento."
+        href={whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
         class="px-3 py-1.5 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center gap-1 shadow-sm"
       >
         <MessageSquare class="w-3.5 h-3.5" />
-        <span>Orçar</span>
+        <span>{primaryCta.mobile}</span>
       </a>
 
       <button
@@ -83,6 +92,8 @@ const isActive = (href: string) => {
         type="button"
         class="p-2 rounded-full text-slate-heading hover:text-brand-primary hover:bg-black/5 transition-colors focus:outline-none"
         aria-label="Abrir menu de navegação"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
       >
         <Menu id="icon-menu" class="w-5 h-5 block" />
         <X id="icon-close" class="w-5 h-5 hidden" />
@@ -91,13 +102,12 @@ const isActive = (href: string) => {
   </header>
 </div>
 
-<!-- Menu Dropdown Mobile Arredondado estilo Card Flutuante -->
 <div class="fixed top-20 inset-x-4 sm:inset-x-8 z-50 pointer-events-none flex justify-center">
-  <div 
-    id="mobile-menu" 
+  <div
+    id="mobile-menu"
     class="hidden pointer-events-auto w-full max-w-md rounded-3xl bg-white/95 backdrop-blur-xl border border-gray-200/80 shadow-2xl p-5 animate-in fade-in slide-in-from-top-4 duration-200"
   >
-    <div class="space-y-2">
+    <nav class="space-y-2" aria-label="Navegação móvel">
       {navLinks.map((link) => (
         <a
           href={link.href}
@@ -113,16 +123,16 @@ const isActive = (href: string) => {
 
       <div class="pt-4 border-t border-gray-100">
         <a
-          href="https://wa.me/5547984388016?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20meu%20im%C3%B3vel."
+          href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
           class="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-brand-primary hover:bg-brand-primaryHover text-white text-sm font-bold shadow-md transition-colors"
         >
           <MessageSquare class="w-4 h-4 text-emerald-200" />
-          <span>Solicitar Orçamento no WhatsApp</span>
+          <span>{primaryCta.desktop}</span>
         </a>
       </div>
-    </div>
+    </nav>
   </div>
 </div>
 
@@ -133,32 +143,32 @@ const isActive = (href: string) => {
   const iconMenu = document.getElementById('icon-menu');
   const iconClose = document.getElementById('icon-close');
 
-  // Toggle do menu mobile
+  const closeMenu = () => {
+    if (!btn || !menu || !iconMenu || !iconClose) return;
+    menu.classList.add('hidden');
+    iconMenu.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Abrir menu de navegação');
+  };
+
   if (btn && menu && iconMenu && iconClose) {
     btn.addEventListener('click', () => {
-      const isExpanded = menu.classList.contains('hidden');
-      if (isExpanded) {
+      const willOpen = menu.classList.contains('hidden');
+      if (willOpen) {
         menu.classList.remove('hidden');
         iconMenu.classList.add('hidden');
         iconClose.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Fechar menu de navegação');
       } else {
-        menu.classList.add('hidden');
-        iconMenu.classList.remove('hidden');
-        iconClose.classList.add('hidden');
+        closeMenu();
       }
     });
 
-    // Fechar ao clicar em qualquer link
-    menu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        menu.classList.add('hidden');
-        iconMenu.classList.remove('hidden');
-        iconClose.classList.add('hidden');
-      });
-    });
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
   }
 
-  // Efeito dinâmico na rolagem da página (cápsula com sombra acentuada ao descer)
   window.addEventListener('scroll', () => {
     if (!nav) return;
     if (window.scrollY > 30) {
@@ -168,5 +178,5 @@ const isActive = (href: string) => {
       nav.classList.remove('shadow-xl', 'bg-white/95', 'border-gray-200/90');
       nav.classList.add('bg-white/90', 'border-white/40');
     }
-  });
+  }, { passive: true });
 </script>

@@ -7,9 +7,9 @@ import {
 
 const services = [
   {
-    id: 'retificacao',
+    id: 'regularizacao',
     title: 'Regularização Fundiária, Usucapião e Retificação de Área',
-    badge: '1º Prioridade — Cartório & Escritura',
+    badge: 'Imóveis rurais — Cartório & Escritura',
     icon: FileCheck,
     image: '/images/servico-retificacao.webp',
     whatIs: 'Correção técnica de confrontações e metragens divergentes na matrícula do imóvel, além de elaboração completa das plantas e memoriais técnicos para processos de usucapião extrajudicial em cartório ou judicial.',
@@ -59,8 +59,8 @@ const services = [
     image: '/images/servico-obras.webp',
     whatIs: 'Apoio topográfico completo para o canteiro de obras: locação de eixos de fundação, nivelamento de platôs e cálculo volumétrico rigoroso de terraplenagem.',
     whoNeeds: [
-      'Construtoras e loteadores que necessitam de locação milimétrica de gabaritos, estacas e redes pluviais.',
-      'Cálculo preciso de cubagem de corte e aterro, garantindo economia em horas de máquina e fretes de caçamba.',
+      'Construtoras e loteadores que necessitam de locação técnica de gabaritos, estacas e redes pluviais.',
+      'Cálculo de cubagem de corte e aterro para apoiar o planejamento de horas de máquina e fretes de caçamba.',
       'Indústrias na região da BR-280 que planejam ampliações fabris, pátios de carga e terraplenagem.',
       'Levantamento cadastral as-built de obras concluídas para habite-se.'
     ],
@@ -70,8 +70,8 @@ const services = [
 ---
 
 <Layout 
-  title="Topografia & Agrimensura | SC Topografia - Rio Negrinho"
-  description="Serviços de regularização fundiária, usucapião, retificação de área, medição de terrenos, desmembramentos e georreferenciamento INCRA em Rio Negrinho e região."
+  title="Topografia Rural e Regularização Fundiária | SC Topografia"
+  description="Topografia rural, georreferenciamento, medição de propriedades e regularização fundiária para proprietários e empresas no Planalto Norte de SC e Sul do PR."
 >
   <!-- Hero da Página de Topografia -->
   <section class="relative bg-brand-dark text-white py-20 lg:py-24 overflow-hidden -mt-16 sm:-mt-20 pt-24">
@@ -88,13 +88,13 @@ const services = [
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-primary/40 border border-emerald-400/40 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-6">
           <Compass class="w-4 h-4" />
-          <span>Pilar 01 — Topografia & Agrimensura</span>
+          <span>Topografia rural e gestão territorial</span>
         </div>
         <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight mb-6">
-          Topografia de Precisão & Regularização Fundiária
+          Organize, meça e regularize sua propriedade rural.
         </h1>
         <p class="text-base sm:text-lg text-gray-300 leading-relaxed mb-8 font-medium">
-          Do levantamento com GPS RTK no campo até a aprovação definitiva no cartório. Segurança técnica com emissão de ART no CREA e mais de duas décadas de experiência.
+          Atendimento a proprietários e empresas que precisam entender seus limites, organizar uma carteira de imóveis ou conduzir a documentação técnica do campo ao cartório.
         </p>
         <div class="flex flex-wrap gap-4">
           <a
@@ -113,6 +113,25 @@ const services = [
             <Phone class="w-4 h-4 text-emerald-400" />
             <span>(47) 3644-4235</span>
           </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="md:col-span-1">
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-brand-primary mb-2">Para quem atendemos</p>
+        <h2 class="text-2xl font-extrabold text-slate-heading">A propriedade como um todo.</h2>
+      </div>
+      <div class="md:col-span-2 grid sm:grid-cols-2 gap-4">
+        <div class="rounded-2xl bg-brand-lightBg border border-gray-200 p-5">
+          <h3 class="font-bold text-slate-heading mb-2">Proprietários rurais</h3>
+          <p class="text-sm text-slate-body leading-relaxed">Medição, divisão, georreferenciamento e regularização para quem precisa deixar a área clara e documentada.</p>
+        </div>
+        <div class="rounded-2xl bg-brand-lightBg border border-gray-200 p-5">
+          <h3 class="font-bold text-slate-heading mb-2">Empresas com vários imóveis</h3>
+          <p class="text-sm text-slate-body leading-relaxed">Levantamentos e apoio técnico para organizar propriedades, áreas florestais, limites e documentação.</p>
         </div>
       </div>
     </div>
@@ -216,7 +235,7 @@ const services = [
             <Globe class="w-7 h-7" />
           </div>
           <h4 class="font-bold text-slate-heading text-base mb-2">GNSS RTK de Alta Precisão</h4>
-          <p class="text-xs text-slate-body leading-relaxed">Rastreamento de satélites com dupla frequência em tempo real, garantindo precisão milimétrica nas divisas e limites no campo.</p>
+          <p class="text-xs text-slate-body leading-relaxed">Rastreamento de satélites com dupla frequência em tempo real, com precisão compatível com as exigências técnicas de cada serviço.</p>
         </div>
 
         <!-- Estação Total -->

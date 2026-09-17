@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = 'SC Topografia e Operações Florestais | Rio Negrinho - SC',
-  description = 'Soluções completas em topografia, agrimensura, georreferenciamento INCRA e operações florestais com venda de madeira em tora no Planalto Norte de Santa Catarina.',
+  title = 'Parceria Florestal e Topografia Rural em SC e PR | SC Topografia',
+  description = 'Avaliação de propriedades para parceria florestal, topografia rural, regularização fundiária, madeira e gestão de corte no Planalto Norte de SC e Sul do PR.',
   image = '/images/hero-fallback.webp',
 } = Astro.props;
 
@@ -42,7 +42,11 @@ const schemaData = {
   },
   "telephone": "+55-47-3644-4235",
   "priceRange": "$$",
-  "openingHours": "Mo-Fr 08:00-18:00"
+  "openingHours": "Mo-Fr 08:00-18:00",
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "Planalto Norte de Santa Catarina" },
+    { "@type": "AdministrativeArea", "name": "Sul do Paraná" }
+  ]
 };
 ---
 
@@ -88,10 +92,11 @@ const schemaData = {
     <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
   </head>
   <body class="min-h-screen flex flex-col bg-white text-slate-body font-sans antialiased selection:bg-brand-primary selection:text-white">
+    <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo</a>
     <TopBar />
     <Navbar />
     
-    <main class="flex-grow">
+    <main id="conteudo-principal" class="flex-grow" tabindex="-1">
       <slot />
     </main>
 
@@ -110,5 +115,41 @@ const schemaData = {
   /* Cor base para títulos com especificidade zero para não sobrescrever classes utilitárias como text-white */
   :where(h1, h2, h3, h4, h5, h6) {
     color: #1A202C;
+  }
+
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    transform: translateY(-160%);
+    border-radius: 9999px;
+    background: #ffffff;
+    color: #0B2912;
+    padding: 0.75rem 1rem;
+    font-weight: 700;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.2);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid #28A745;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>

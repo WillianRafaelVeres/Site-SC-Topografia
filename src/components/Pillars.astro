@@ -1,155 +1,72 @@
 ---
-import { Compass, Trees, ArrowRight, CheckCircle2 } from 'lucide-astro';
+import { ArrowRight, CheckCircle2, Compass, Trees } from 'lucide-astro';
 ---
 
-<section id="pilares" class="py-20 lg:py-28 bg-white">
+<section id="pilares" class="py-20 lg:py-28 bg-white scroll-mt-24">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <!-- Cabeçalho da Seção -->
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 text-brand-primary text-xs font-bold uppercase tracking-wider mb-3">
-        Nossas Áreas de Atuação
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-heading tracking-tight mb-4">
-        Dois grandes pilares, a mesma excelência técnica.
+    <div class="max-w-3xl mb-12 lg:mb-16">
+      <p class="text-xs font-bold uppercase tracking-[0.18em] text-brand-primary mb-3">Terra, floresta e segurança documental</p>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-heading tracking-tight leading-tight mb-5">
+        Experiência técnica para cuidar e valorizar propriedades rurais.
       </h2>
       <p class="text-base sm:text-lg text-slate-body leading-relaxed">
-        Unimos a exatidão milimétrica da agrimensura no campo à gestão e comercialização florestal para entregar soluções seguras para o produtor rural e indústrias.
+        A SC nasceu na topografia e ampliou sua atuação no setor florestal. Hoje, essas duas experiências se encontram na análise da terra, no planejamento e na execução de projetos de longo prazo.
       </p>
     </div>
 
-    <!-- Grid dos Dois Grandes Pilares -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-      
-      <!-- PILAR 1: TOPOGRAFIA & AGRIMENSURA -->
-      <div class="group relative bg-brand-lightBg rounded-3xl overflow-hidden border border-gray-200/90 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
-        <div>
-          <!-- Imagem de Destaque com overlay de alto contraste -->
-          <div class="relative h-64 sm:h-72 overflow-hidden">
-            <img 
-              src="/images/topografia-field.webp" 
-              alt="Topografia e Agrimensura no Campo" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/40 to-transparent"></div>
-            <div class="absolute bottom-4 left-5 right-5 flex items-center justify-between text-white">
-              <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-xl bg-brand-primary flex items-center justify-center shadow-lg border border-emerald-400/30">
-                  <Compass class="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-300 drop-shadow">Pilar 01</span>
-                  <h3 class="text-xl sm:text-2xl font-bold text-white drop-shadow">Topografia & Agrimensura</h3>
-                </div>
-              </div>
-            </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+      <article class="group lg:col-span-7 relative min-h-[520px] overflow-hidden rounded-[2rem] bg-brand-dark shadow-xl">
+        <img
+          src="/images/floresta-pinus.webp"
+          alt="Floresta de Pinus em propriedade rural"
+          class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#061309] via-[#0b2912]/75 to-black/10"></div>
+        <div class="relative h-full min-h-[520px] p-6 sm:p-9 lg:p-10 flex flex-col justify-end text-white">
+          <div class="w-12 h-12 rounded-2xl bg-white/12 backdrop-blur border border-white/15 flex items-center justify-center mb-5">
+            <Trees class="w-6 h-6 text-emerald-300" />
           </div>
-
-          <!-- Conteúdo e Serviços Chave -->
-          <div class="p-6 sm:p-8">
-            <p class="text-slate-body text-sm sm:text-base leading-relaxed mb-6 font-medium">
-              Serviço completo para quem precisa medir, desmembrar ou regularizar imóveis rurais e urbanos no cartório, com equipamentos de última geração e respaldo legal CREA.
-            </p>
-
-            <ul class="space-y-3.5 mb-8">
-              <li class="flex items-start gap-2.5 text-sm text-slate-heading">
-                <CheckCircle2 class="w-5 h-5 text-brand-primary flex-shrink-0 mt-0.5" />
-                <span><strong>Regularização Fundiária & Usucapião:</strong> Plantas e memoriais descritivos prontos para instrução em cartório judicial e extrajudicial.</span>
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-emerald-300 mb-3">Prioridade atual</p>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">Parceria Florestal SC</h3>
+          <p class="text-sm sm:text-base text-gray-100 leading-relaxed max-w-2xl mb-6">
+            Para proprietários que desejam avaliar uma alternativa de longo prazo para áreas com potencial florestal. A proposta é construída após análise técnica da propriedade.
+          </p>
+          <ul class="grid sm:grid-cols-2 gap-3 mb-8 max-w-2xl">
+            {['Avaliação técnica da área', 'Modelo definido em proposta', 'Implantação e manejo planejados', 'Acompanhamento ao longo do projeto'].map((item) => (
+              <li class="flex items-start gap-2 text-sm text-white">
+                <CheckCircle2 class="w-4 h-4 text-emerald-300 flex-shrink-0 mt-0.5" />
+                <span>{item}</span>
               </li>
-              <li class="flex items-start gap-2.5 text-sm text-slate-heading">
-                <CheckCircle2 class="w-5 h-5 text-brand-primary flex-shrink-0 mt-0.5" />
-                <span><strong>Medição e Divisão de Terrenos:</strong> Desmembramentos, partilhas de herança e levantamentos sem conflitos de cerca.</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-slate-heading">
-                <CheckCircle2 class="w-5 h-5 text-brand-primary flex-shrink-0 mt-0.5" />
-                <span><strong>Georreferenciamento INCRA (SIGEF) & CAR:</strong> Certificação oficial obrigatória para financiamentos agrícolas, compra e venda.</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-slate-heading">
-                <CheckCircle2 class="w-5 h-5 text-brand-primary flex-shrink-0 mt-0.5" />
-                <span><strong>Topografia para Obras:</strong> Locação de estacas, terraplenagem e cálculo de corte/aterro para indústrias e construtoras.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Botão Ação -->
-        <div class="p-6 sm:p-8 pt-0">
-          <a 
-            href="/topografia" 
-            class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"
-          >
-            <span>Ver Serviços de Topografia & Agrimensura</span>
-            <ArrowRight class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            ))}
+          </ul>
+          <a href="/florestal" class="inline-flex items-center justify-center sm:self-start gap-2 px-6 py-3.5 rounded-full bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-sm shadow-lg transition-colors group/link">
+            <span>Conhecer a parceria florestal</span>
+            <ArrowRight class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
           </a>
         </div>
-      </div>
+      </article>
 
-      <!-- PILAR 2: OPERAÇÕES FLORESTAIS -->
-      <div class="group relative bg-brand-lightBg rounded-3xl overflow-hidden border border-gray-200/90 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
-        <div>
-          <!-- Imagem de Destaque com Pilha de Pinus Real -->
-          <div class="relative h-64 sm:h-72 overflow-hidden">
-            <img 
-              src="/images/madeira-tora.webp" 
-              alt="Pilha de Toras de Pinus e Colheita Florestal" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/40 to-transparent"></div>
-            <div class="absolute bottom-4 left-5 right-5 flex items-center justify-between text-white">
-              <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-xl bg-brand-dark flex items-center justify-center shadow-lg border border-emerald-400/40">
-                  <Trees class="w-6 h-6 text-emerald-400" />
-                </div>
-                <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-300 drop-shadow">Pilar 02</span>
-                  <h3 class="text-xl sm:text-2xl font-bold text-white drop-shadow">Operações Florestais</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Conteúdo e Serviços Chave -->
-          <div class="p-6 sm:p-8">
-            <p class="text-slate-body text-sm sm:text-base leading-relaxed mb-6 font-medium">
-              Venda direta de madeira de Pinus própria em tora e gestão técnica especializada de colheita/corte com o diferencial da agrimensura e cubagem rigorosa.
-            </p>
-
-            <ul class="space-y-3.5 mb-8">
-              <li class="flex items-start gap-2.5 text-sm text-slate-heading">
-                <CheckCircle2 class="w-5 h-5 text-brand-primary flex-shrink-0 mt-0.5" />
-                <span><strong>Venda de Madeira Própria (Pinus em Tora):</strong> Lotes selecionados para serrarias, indústrias moveleiras e laminação.</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-slate-heading">
-                <CheckCircle2 class="w-5 h-5 text-brand-primary flex-shrink-0 mt-0.5" />
-                <span><strong>Gestão Técnica de Corte Terceirizado:</strong> Planejamento e coordenação do abate, traçamento, baldeio e carregamento.</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-slate-heading">
-                <CheckCircle2 class="w-5 h-5 text-brand-primary flex-shrink-0 mt-0.5" />
-                <span><strong>Diferencial da Agrimensura no Corte:</strong> Traçado prévio de estradas econômicas para escoamento rápido de caminhões e cubagem exata.</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-slate-heading">
-                <CheckCircle2 class="w-5 h-5 text-brand-primary flex-shrink-0 mt-0.5" />
-                <span><strong>Fornecimento Programado:</strong> Segurança de entrega e cumprimento rigoroso de prazos para as empresas da região.</span>
-              </li>
-            </ul>
-          </div>
+      <article class="group lg:col-span-5 rounded-[2rem] overflow-hidden border border-gray-200 bg-brand-lightBg flex flex-col shadow-sm">
+        <div class="h-56 sm:h-64 overflow-hidden relative">
+          <img src="/images/topografia-field.webp" alt="Levantamento topográfico em propriedade rural" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent"></div>
         </div>
-
-        <!-- Botão Ação -->
-        <div class="p-6 sm:p-8 pt-0">
-          <a 
-            href="/florestal" 
-            class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-brand-dark hover:bg-black text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"
-          >
-            <span>Conhecer Madeira de Pinus & Gestão de Corte</span>
-            <ArrowRight class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        <div class="p-6 sm:p-8 flex flex-col flex-grow">
+          <div class="w-11 h-11 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-brand-primary mb-5 shadow-sm">
+            <Compass class="w-5 h-5" />
+          </div>
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-brand-primary mb-2">Competência de origem</p>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-heading tracking-tight mb-3">Topografia rural e regularização</h3>
+          <p class="text-sm text-slate-body leading-relaxed mb-6">
+            Para proprietários e empresas que precisam medir, organizar ou regularizar um imóvel rural, com acompanhamento do campo à documentação técnica.
+          </p>
+          <a href="/topografia" class="mt-auto inline-flex items-center gap-2 text-sm font-bold text-brand-primary hover:text-brand-primaryHover group/link">
+            <span>Ver soluções de topografia rural</span>
+            <ArrowRight class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
           </a>
         </div>
-      </div>
-
+      </article>
     </div>
-
   </div>
 </section>

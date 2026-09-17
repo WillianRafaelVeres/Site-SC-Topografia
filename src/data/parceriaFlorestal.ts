@@ -37,7 +37,7 @@ export const partnershipExample = {
   soyPricePerSack: 130,
   scenarios: [
     { id: '70-30', company: 0.7, owner: 0.3, profile: 'Maior renda anual' },
-    { id: '60-40', company: 0.6, owner: 0.4, profile: 'Equilíbrio' },
+    { id: '60-40', company: 0.6, owner: 0.4, profile: 'Distribuição intermediária' },
     { id: '50-50', company: 0.5, owner: 0.5, profile: 'Maior participação final' },
   ] as PartnershipScenario[],
 };
